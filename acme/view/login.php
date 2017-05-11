@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Template
+Login
 -->
 <html>
     <head>
@@ -23,7 +23,7 @@ Template
             </header>
        
             <div class="navdiv">
-           <nav  class="navtabs">
+           <nav>
                <!-- include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/navigation.php'
                 
         -->
@@ -35,6 +35,17 @@ Template
        
         <main id="page-main">
             <div>
+                <form action='/login.php'>
+                    Email address: <br>
+                    <input type='text'>
+                    <br>
+                    Password:<br>
+                    <input type='text'>
+                    <br><br>
+                    <input type='submit' value='Submit'>
+                   
+                   
+                </form>
                 
             </div>
         </main>
@@ -47,3 +58,4 @@ Template
         </div>
     </body>
 </html>
+

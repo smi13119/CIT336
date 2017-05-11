@@ -52,11 +52,16 @@ footer {
     padding: 5px 5px 0px 5px;
     background-color: #de2226;
     clear: both;
+    color: #FFFFFF;
+    text-decoration: none;
+   
 }
 
 .navtabs {
     list-style-type:none; 
     margin-bottom: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 .banner-home {
     height:400px;
@@ -130,16 +135,17 @@ footer {
     display: inline;
     padding: 8px 3px 15px 3px;
     font-size: 1.3em;
+   
     
     
    
 }
-
 li.active {
     background-color: #FFFFFF;
     color: #de2226
     
 }
+
 
 .block-left {
     width: 45%;

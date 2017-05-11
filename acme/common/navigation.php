@@ -4,8 +4,8 @@ Navigation
 -->
 
         <div class="navdiv">
-            <ul class="navtabs">
-                <li>Home</li>
+            <ul  class="navtabs">
+                <li active>Home</li>
                 <li>Anvils</li>
                 <li>Cannons</li>
                 <li>Protection</li>

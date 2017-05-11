@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Template
+Registration 
 -->
 <html>
     <head>
@@ -23,7 +23,7 @@ Template
             </header>
        
             <div class="navdiv">
-           <nav  class="navtabs">
+           <nav>
                <!-- include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/navigation.php'
                 
         -->
@@ -35,7 +35,21 @@ Template
        
         <main id="page-main">
             <div>
-                
+                <form action='registration.php'>
+                    First Name:<br>
+                    <input type='text'  name='firstname' required>
+                    <br>
+                    Last Name:<br>
+                    <input type ='text' name='lastname' required>
+                    <br>
+                    Email Address:<br>
+                    <input type='text' name='emailaddress' required>
+                    <br>
+                    Password:<br>
+                    <input type='text' name='password' required>
+                    <br><br>
+                    <input type='submit' value='Submit'>
+                </form>
             </div>
         </main>
             <footer id="page-footer">
@@ -47,3 +61,4 @@ Template
         </div>
     </body>
 </html>
+

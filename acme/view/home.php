@@ -21,14 +21,16 @@ Home Page
         ?>
               
             </header>
-       
-           <nav  id="page-nav">
+            <div class="navdiv">
+           <nav  class="navtabs">
+  <!--    include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/navigation.php'
                 
-                <?php include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/navigation.php'
-                        ?>
+        -->
+            <?php echo $navList; ?>
+        
+             </nav>   
+            </div>
             
-            </nav>   
-       
         <main  id="page-main">
             
             <h1>Welcome to Acme </h1>
