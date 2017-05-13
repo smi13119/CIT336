@@ -23,7 +23,7 @@ Registration
             </header>
        
             <div class="navdiv">
-           <nav>
+           <nav  class="navtabs">
                <!-- include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/navigation.php'
                 
         -->

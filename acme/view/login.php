@@ -21,9 +21,9 @@ Login
         ?>
               
             </header>
-       
+            
             <div class="navdiv">
-           <nav>
+           <nav  class="navtabs">
                <!-- include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/navigation.php'
                 
         -->
@@ -34,6 +34,7 @@ Login
             </div>
        
         <main id="page-main">
+            <h1> Login</h1>
             <div>
                 <form action='/login.php'>
                     Email address: <br>
@@ -48,6 +49,7 @@ Login
                 </form>
                 
             </div>
+            <h2><a href = '../accounts/index.php?action=registration'>Register for an account</a></h2>
         </main>
             <footer id="page-footer">
                 <div>

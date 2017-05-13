@@ -61,7 +61,7 @@ footer {
     list-style-type:none; 
     margin-bottom: 5px;
     color: #FFFFFF;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .banner-home {
     height:400px;

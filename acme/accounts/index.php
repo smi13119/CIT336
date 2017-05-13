@@ -16,10 +16,11 @@ $categories = getCategories();
 //exit;
 
 // Build a navigation bar using the $categories array
-$navList = '<ul class="navtabs">';
-$navList .= "<li><a href='/acme/index.php' title='View the Acme home page'>Home</a></li>";
+$navList = '<ul>';
+$navList .= '<li> <a class="navtabs" href="/acme/index.php" title="View the Acme home page">Home</a></li>';
 foreach ($categories as $category) {
-$navList .= "<li><a href='/acme/index.php? action=$category[categoryName]' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
+    
+$navList .= '<li> <a class="navtabs" href="/acme/index.php?action='.$category["categoryName"].'" title="View our '.$category["categoryName"].' product line">'.$category["categoryName"].'</a></li>';
 }
 $navList .= '</ul>';
 
@@ -33,10 +34,10 @@ if ($action == NULL){
 }
 
 switch ($action){
- case 'lisa':
-  
-     break;
- default;
-     
- 
+ case 'login':
+     include'../view/login.php';
+    break;
+ case 'registration':
+     include'../view/registration.php';
+    break;
 }
