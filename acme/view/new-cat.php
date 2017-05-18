@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Registration 
+New Category 
 -->
 <html>
     <head>
@@ -35,28 +35,16 @@ Registration
        
         <main id="page-main">
             <div>
-                <?php
-                if (isset($message)) {
-                    echo $message;
-                }
-                ?>
-                 
-                <form method="post" action="/acme/accounts/index.php">
-                    First Name:<br>
-                    <input type='text'  name='firstname' id= 'firstname' required>
+                <h1>Add Category</h1>
+                <h2> Add a new category of products below.</h2>
+                <h3> New Category Name</h3>
+                
+                <form>
+                    
+                    
+                    <textarea name="message" rows="1" cols="30"></textarea>
                     <br>
-                    Last Name:<br>
-                    <input type ='text' name='lastname' id= 'lastname' required>
-                    <br>
-                    Email Address:<br>
-                    <input type='text' name='emailaddress' id= 'email' required>
-                    <br>
-                    Password:<br>
-                    <input type='text' name='password' id='password' required>
-                    <br><br>
-                    <input type='submit' value='Submit'>
-                    <!--Add the action name - value pair -->
-                    <input type="hidden" name="action" value="register">
+                    <input type="submit" value="Add Category">
                 </form>
             </div>
         </main>
@@ -69,4 +57,3 @@ Registration
         </div>
     </body>
 </html>
-

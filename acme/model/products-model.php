@@ -1,22 +1,24 @@
 <?php
 
 /* 
- Acme Model
+Product-model
  */
 
-function getCategories(){
+
+
+function getProducts(){
     // Create a connection object from the acme connection function 
 $db = acmeConnect();
 // The SQL statement to be used with the database
-$sql = 'SELECT categoryId, categoryName FROM categories ORDER BY categoryName ASC';
+$sql = 'SELECT invId, invName, invDescription, invImage, invThumbnail, invPrice, invStock, invSize, invWeight, invLocation, categoryId, invVendor, invStyle FROM inventory';
 // The next line creates the prepared statement using the acme connection
 $stmt = $db->prepare($sql);
 // The next line runs the prepared statement
 $stmt->execute();
 //The next line gets the date from the dateabase and stores it as an array in the the $categories variable
-$categories = $stmt->fetchAll();
+$products = $stmt->fetchAll();
 // The next line closes the interaction with the database
 $stmt->closeCursor();
 
-return $categories; 
-}       
+return $products; 
+}   

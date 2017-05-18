@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Registration 
+Product Management 
 -->
 <html>
     <head>
@@ -35,29 +35,12 @@ Registration
        
         <main id="page-main">
             <div>
-                <?php
-                if (isset($message)) {
-                    echo $message;
-                }
-                ?>
-                 
-                <form method="post" action="/acme/accounts/index.php">
-                    First Name:<br>
-                    <input type='text'  name='firstname' id= 'firstname' required>
-                    <br>
-                    Last Name:<br>
-                    <input type ='text' name='lastname' id= 'lastname' required>
-                    <br>
-                    Email Address:<br>
-                    <input type='text' name='emailaddress' id= 'email' required>
-                    <br>
-                    Password:<br>
-                    <input type='text' name='password' id='password' required>
-                    <br><br>
-                    <input type='submit' value='Submit'>
-                    <!--Add the action name - value pair -->
-                    <input type="hidden" name="action" value="register">
-                </form>
+                <h1> Product Management</h1>
+                <p> Welcome to the product management page. Please choose an option below:</p>
+                <ul>
+                    <li> Add a New Category</li>
+                    <li> Add a New Product </li>
+                </ul>
             </div>
         </main>
             <footer id="page-footer">
@@ -69,4 +52,3 @@ Registration
         </div>
     </body>
 </html>
-
