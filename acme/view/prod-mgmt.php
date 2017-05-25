@@ -38,8 +38,8 @@ Product Management
                 <h1> Product Management</h1>
                 <p> Welcome to the product management page. Please choose an option below:</p>
                 <ul>
-                    <li> Add a New Category</li>
-                    <li> Add a New Product </li>
+                    <li><a href="/acme/products/index.php?action=addNewCategory" title="Add Category">Add a New Category</a></li>
+                    <li><a href="/acme/products/index.php?action=createProduct" title="Add a New Product">Add a New Product</a> </li>
                 </ul>
             </div>
         </main>

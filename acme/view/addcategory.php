@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-New Category 
+Add Category View
 -->
 <html>
     <head>
@@ -36,17 +36,16 @@ New Category
         <main id="page-main">
             <div>
                 <h1>Add Category</h1>
-                <h2> Add a new category of products below.</h2>
+                <h2>Add a new category of products below</h2>
                 <h3> New Category Name</h3>
-                
-                <form>
-                    
-                    
-                    <textarea name="message" rows="1" cols="30"></textarea>
+                <p><strong> <?php echo $message; ?></strong></p>
+                <form action="/acme/products/index.php?action=addNewCategory" method="post">
+                      <input type="text" name="categoryName" />
                     <br>
-                    <input type="submit" value="Add Category">
+                    <button type='submit' >Add Category</button>
                 </form>
             </div>
+            
         </main>
             <footer id="page-footer">
                 <div>
