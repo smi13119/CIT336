@@ -55,6 +55,7 @@ Add Category View
                 <h3> New Product</h3>
                 <p><strong> <?php echo $message; ?></strong></p>
                 <form class="newproductform" action="/acme/products/index.php?action=addNewProduct" method="post">
+                    <fieldset>
                    <label>Category</label>
                     <?php echo $catList; ?>
                     <label>Product Name</label>
@@ -81,7 +82,7 @@ Add Category View
                     <input type="text" name="invstyle" <?php if(isset($invStyle)){echo "value='$invStyle'";} ?> required />
                     <br>
                     <button type="submit"> Add New Product</button>
-                                   
+                    </fieldset>              
                 </form>
                 
             </div>
