@@ -28,13 +28,13 @@ ob_end_clean();
 
 //Create a $catList variable to build a dynamic drop-down select list
 // Build a catlist   array
-$catList = '<select name="categories">';
-$catList .= '<option value ="">Please Choose</option>';
-foreach ($categoriesAndIds as $catAndId) {
-    
-$catList .= '<option value="'.$catAndId["categoryId"].'">'.$catAndId["categoryName"].'</option>';
-}
-$catList .= '</select>';
+//$catList = '<select name="categories">';
+//$catList .= '<option value ="">Please Choose</option>';
+//foreach ($categoriesAndIds as $catAndId) {
+//    
+//$catList .= '<option value="'.$catAndId["categoryId"].'">'.$catAndId["categoryName"].'</option>';
+//}
+//$catList .= '</select>';
 
 
 
