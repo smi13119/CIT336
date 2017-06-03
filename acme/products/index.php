@@ -10,6 +10,10 @@ require_once '../library/connections.php';
 
 // Get the products model
 require_once '../model/products-model.php';
+//Get the Functions
+require_once '../library/functions.php';
+//Get the Acme-model
+require_once '../model/acme-model.php';
 
 
 
@@ -98,7 +102,7 @@ switch ($action) {
         
     }
     $newproduct = newProduct($invname, $invdescription, $invimage, $invthumbnail, $invprice, $invstock, $invsize, $invweight, $invlocation, $categoryid, $invvendor, $invstyle);
-    if($newProduct === 1) {
+    if($newproduct === 1) {
         $message = "<p>Thank you for adding the new product $invname to the inventory.</p>";
         
     } else {

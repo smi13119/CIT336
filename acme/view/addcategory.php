@@ -28,7 +28,7 @@ Add Category View
                 
         -->
                 
-                <?php echo $navList; ?>
+                <?php echo navigation(); ?>
                        
              </nav>   
             </div>
@@ -38,9 +38,9 @@ Add Category View
                 <h1>Add Category</h1>
                 <h2>Add a new category of products below</h2>
                 <h3> New Category Name</h3>
-                <p><strong> <?php echo $message; ?></strong></p>
+                <p><strong> <?php echo $message; ?> </strong></p>
                 <form action="/acme/products/index.php?action=addNewCategory" method="post">
-                      <input type="text" name="categoryName" />
+                      <input type="text" name="categoryName" <?php if(isset($categoryName)){echo "value='$categoryName'";} ?> required />
                     <br>
                     <button type='submit' >Add Category</button>
                 </form>

@@ -69,5 +69,5 @@ $stmt->bindValue(':invStyle', $invStyle, PDO::PARAM_STR);
 $stmt->execute();
 $rowsChanged = $stmt->rowCount();
 $stmt->closeCursor();
-return $products; 
+return $rowsChanged; 
 }   

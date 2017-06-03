@@ -29,6 +29,7 @@ footer {
     background-color: #FFFFFF;
 }
 
+
 .header-left {
     width: 60%; 
     float:left; 
@@ -131,6 +132,9 @@ footer {
   
 }
 
+
+
+
 .navtabs li {
     display: inline;
     padding: 8px 3px 15px 3px;
@@ -161,4 +165,8 @@ li.active {
 .newproductform label,.newproductform input {
     display:block;
     
+}
+
+.reduce {
+    font-size: .4em;
 }

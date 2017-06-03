@@ -11,8 +11,8 @@
  //Create a connection object using the acme connection function 
      $db = acmeConnect();
  //The SQL statement
-     $sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail,ClientPassword)'
-             . 'Values (:firstname, :lastname; :email, :password)';
+     $sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail,clientPassword)'
+             . 'Values (:firstname, :lastname, :email, :password)';
  //Create the prepared statement using the acme connection
      $stmt = $db->prepare($sql);
  //The next four lines replace the placeholders in the SQL statement with the actual values in the variables and tells the database the type of data it is

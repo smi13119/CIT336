@@ -28,7 +28,7 @@ Product Management
                 
         -->
                 
-                <?php echo $navList; ?>
+                <?php echo navigation(); ?>
                        
              </nav>   
             </div>

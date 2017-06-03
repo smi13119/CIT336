@@ -28,7 +28,7 @@ Login
                 
         -->
                 
-                <?php echo $navList; ?>
+                <?php echo navigation(); ?>
                        
              </nav>   
             </div>
@@ -36,14 +36,24 @@ Login
         <main id="page-main">
             <h1> Login</h1>
             <div>
-                <form action='/login.php'>
-                    Email address: <br>
-                    <input type='text'>
+                <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+                ?>
+                <form action="/acme/accounts/index.php?action=login" method="post">
+                        <label for="email">Email address:</label>
+                        <br>
+                    <input type='email' name="emailaddress" id="email"<?php if (isset($email)){echo "value='email'";} ?> required>
                     <br>
-                    Password:<br>
-                    <input type='text'>
+                    <label for="password">Password:</label>
+                    <br>
+                    <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+                    <br>
+                    <input type='password' name="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
                     <br><br>
-                    <input type='submit' value='Submit'>
+                    <input type='hidden' name="action" value='Login'>
+                    <input type='submit' value='Login'>
                    
                    
                 </form>

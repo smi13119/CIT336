@@ -28,13 +28,14 @@ Registration
                 
         -->
                 
-                <?php echo $navList; ?>
+                <?php echo navigation(); ?>
                        
              </nav>   
             </div>
        
         <main id="page-main">
             <div>
+                <h1>Acme Registration</h1>
                 <?php
                 if (isset($message)) {
                     echo $message;
@@ -42,21 +43,29 @@ Registration
                 ?>
                  
                 <form method="post" action="/acme/accounts/index.php">
-                    First Name:<br>
-                    <input type='text'  name='firstname' id= 'firstname' required>
+                  
+                    <label for="firstname">First Name:</label>
                     <br>
-                    Last Name:<br>
-                    <input type ='text' name='lastname' id= 'lastname' required>
+                    <input type='text'  name='firstname' id='firstname'<?php if (isset($firstname)){echo "value='$firstname'";} ?> required>
                     <br>
-                    Email Address:<br>
-                    <input type='text' name='emailaddress' id= 'email' required>
+                    <label for="lastname">Last Name:</label>
+                        <br>
+                    <input type ='text' name='lastname' id='lastname'<?php if (isset($lastname)){echo "value='$lastname'";} ?> required>
                     <br>
-                    Password:<br>
-                    <input type='text' name='password' id='password' required>
+                    <label for="email">Email Address:</label>
+                    <br>
+                    <input type='email' name='email' id='email'<?php if (isset($email)){echo "value='$email'";} ?> required>
+                    <br>
+                    <label for="password">Password:</label>
+                    <br>
+                    <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+                    <br>
+                    <input type='password' name='password' id='password' required pattern="(?=^.{8,}$)(?=.*\d)(?=.\W+)(?![.\n](?=.*[A-Z])(?=.[a-z]).*$">
                     <br><br>
                     <input type='submit' value='Submit'>
                     <!--Add the action name - value pair -->
-                    <input type="hidden" name="action" value="register">
+                    <input type="hidden" name="action" value="registration">
+                    
                 </form>
             </div>
         </main>

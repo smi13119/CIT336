@@ -8,6 +8,8 @@ Acme Controller
 require_once 'library/connections.php';
 // Get the acme model for use as needed
 require_once 'model/acme-model.php';
+//Get the Functions
+require_once 'library/functions.php';
 
 
 // Get the array of categories
@@ -17,13 +19,13 @@ $categories = getCategories();
 //exit;
 
 // Build a navigation bar using the $categories array
-$navList = '<ul>';
-$navList .= '<li> <a class="navtabs" href="/acme/index.php" title="View the Acme home page">Home</a></li>';
-foreach ($categories as $category) {
-    
-$navList .= '<li> <a class="navtabs" href="/acme/index.php?action='.$category["categoryName"].'" title="View our '.$category["categoryName"].' product line">'.$category["categoryName"].'</a></li>';
-}
-$navList .= '</ul>';
+//$navList = '<ul>';
+//$navList .= '<li> <a class="navtabs" href="/acme/index.php" title="View the Acme home page">Home</a></li>';
+//foreach ($categories as $category) {
+//
+//$navList .= '<li> <a class="navtabs" href="/acme/index.php?action='.$category["categoryName"].'" title="View our '.$category["categoryName"].' product line">'.$category["categoryName"].'</a></li>';
+//}
+//$navList .= '</ul>';
 
 //echo $navList;
 //exit;

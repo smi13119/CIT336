@@ -26,7 +26,7 @@ Home Page
   <!--    include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/navigation.php'
                 
         -->
-            <?php echo $navList; ?>
+            <?php echo navigation(); ?>
         
              </nav>   
             </div>
