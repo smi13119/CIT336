@@ -42,9 +42,10 @@ Login
                 }
                 ?>
                 <form action="/acme/accounts/index.php?action=login" method="post">
+                    <fieldset>
                         <label for="email">Email address:</label>
                         <br>
-                    <input type='email' name="emailaddress" id="email"<?php if (isset($email)){echo "value='email'";} ?> required>
+                    <input type='email' name="email" id="email"<?php if (isset($email)){echo "value='email'";} ?> required>
                     <br>
                     <label for="password">Password:</label>
                     <br>
@@ -55,11 +56,16 @@ Login
                     <input type='hidden' name="action" value='Login'>
                     <input type='submit' value='Login'>
                    
-                   
+                    </fieldset>
                 </form>
                 
             </div>
-            <h2><a href = '../accounts/index.php?action=registration'>Register for an account</a></h2>
+            <h2>Not a Member?</h2>
+                <form method="post" action="../accounts/index.php?action=registration">
+                    <fieldset>
+                        <button type="submit">Register Here</button>
+                    </fieldset>
+                </form>
         </main>
             <footer id="page-footer">
                 <div>

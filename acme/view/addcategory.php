@@ -35,12 +35,16 @@ Add Category View
        
         <main id="page-main">
             <div>
+                 <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+                ?>
+               
                 <h1>Add Category</h1>
-                <h2>Add a new category of products below</h2>
-                <h3> New Category Name</h3>
-                <p><strong> <?php echo $message; ?> </strong></p>
-                <form action="/acme/products/index.php?action=addNewCategory" method="post">
-                      <input type="text" name="categoryName" <?php if(isset($categoryName)){echo "value='$categoryName'";} ?> required />
+                
+                <form action= "/acme/products/index.php?action=addNewCategory" method="post">
+                      <input type="text" name="categoryName" <?php if(isset($categoryname)){echo "value='$categoryname'";} ?> required />
                     <br>
                     <button type='submit' >Add Category</button>
                 </form>
@@ -49,7 +53,7 @@ Add Category View
         </main>
             <footer id="page-footer">
                 <div>
-                <?php include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/footer.php'
+                <?php include $_SERVER ['DOCUMENT_ROOT']. '/acme/common/footer.php';
                         ?>
                 </div>
             </footer>

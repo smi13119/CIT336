@@ -1,6 +1,10 @@
+<?php
+$clientdata =$_SESSION['clientData'];
+if $_SESSION['loggedin']==TRUE {
+?>
 <!DOCTYPE html>
 <!--
-Product Management 
+Admin View
 -->
 <html>
     <head>
@@ -35,12 +39,9 @@ Product Management
        
         <main id="page-main">
             <div>
-                <h1> Product Management</h1>
-                <p> Welcome to the product management page. Please choose an option below:</p>
-                <ul>
-                    <li><a href="/acme/products/index.php?action=createCategory" title="Add Category">Add a New Category</a></li>
-                    <li><a href="/acme/products/index.php?action=createProduct" title="Add a New Product">Add a New Product</a> </li>
-                </ul>
+<h1>Welcome<?php echo $clientData ['$firstname, $lastname, $email, $password,']?></h1>
+                
+                
             </div>
         </main>
             <footer id="page-footer">
@@ -52,3 +53,5 @@ Product Management
         </div>
     </body>
 </html>
+
+<?php } ?>

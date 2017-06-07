@@ -4,16 +4,24 @@
 Acme Controller
  */
 
+//Create or access a Session
+session_start();
+
+
 // Get the database connection file
 require_once 'library/connections.php';
 // Get the acme model for use as needed
 require_once 'model/acme-model.php';
 //Get the Functions
 require_once 'library/functions.php';
+require_once 'model/products-model.php';
 
 
 // Get the array of categories
 $categories = getCategories();
+
+//call the Navigation function
+navigation();
 
 //var_dump($categories);
 //exit;

@@ -29,3 +29,58 @@
 // Return the indication of success (rows changed)
    return $rowsChanged; 
  }
+ 
+ //check for an existing email address
+ function checkExistingEmail($email){
+ $db = acmeConnect();
+ //the SQL statement
+ $sql = 'SELECT clientEmail FROM clients WHERE clientEmail = :email';
+ //Create the prepared statment using the acme connection
+ $stmt = $db->prepare($sql);
+ //place actual variables and tell the databse they type of data
+ $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+ $stmt->execute ();
+ //tells the system to look for the existing email
+ $matchEmail = $stmt->fetch(PDO::FETCH_NUM);
+ //close the datebase interaction
+ $stmt->closeCursor();
+ if (empty($matchEmail)){
+     return 0;
+ } else {
+     return 1;
+ }
+ // Get client data based on an email address
+ function getClient($email){
+     $db = acmeConnect();
+     $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail= :email';
+     $stmt = $db->prepare($sql);
+     $stmt->bindValue(':email, $email, PDO::PARAM_STR');
+     $stmt->execute();
+     $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+     $stmt->closeCursor();
+     return $clientData;
+ }
+ //Get client data based on email and password
+ function getClientlogin($email,$password){
+     $db = acmeConnect();
+     $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail= :email and passord= :password';
+     $stmt = $db->prepare($sql);
+     $stmt->bindValue(':email, $email, PDO::PARAM_STR');
+     $stmt->bindValue(':password, $password, PDO::PARAM_STR');
+     $stmt->execute();
+     $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+     $stmt->closeCursor();
+     return $clientData;
+ }
+ 
+// if (empty($matchEmail)){
+//    //return 0;
+//  echo 'Nothing found';
+//  exit;
+//} else {
+//  //return 1;
+//  echo 'Match found';
+//  exit;
+// }
+// }
+ }

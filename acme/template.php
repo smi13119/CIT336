@@ -28,7 +28,7 @@ Template
                 
         -->
                 
-                <?php echo $navList; ?>
+                <?php echo navigation(); ?>
                        
              </nav>   
             </div>

@@ -4,6 +4,8 @@
 Products Controller
  * 
  */
+// Create or access a Session
+session_start();
 
 // Get the database connection file
 require_once '../library/connections.php';
@@ -16,6 +18,8 @@ require_once '../library/functions.php';
 require_once '../model/acme-model.php';
 
 
+//call the Navigation function
+ navigation();
 
 // Get the array of categories
 $categoriesAndIds = getCategoriesAndIds();
@@ -24,6 +28,7 @@ ob_start();
 include '../view/navlist.php';
 $navList = ob_get_contents();
 ob_end_clean();
+
 
 
 //Create a $catList variable to build a dynamic drop-down select list
@@ -44,13 +49,19 @@ if ($action == NULL) {
 }
 
 switch ($action) {
+    
+      case 'createCategory':
+      $message='';
+      include '../view/addcategory.php';
+      break;
+    
   case 'addNewCategory':
       //Filter to store the new data
     
-    $categoryname = filter_input(INPUT_POST, 'categoryName');
+    $categoryname = filter_input(INPUT_POST, 'categoryName', FILTER_SANITIZE_STRING);
     
     //Check for missing data
-    if(empty($categoryname)){
+    if(empty($categoryname)) {
         $message = '<p>Please provide information for all empty form fields.</p>';
         
         
@@ -74,6 +85,8 @@ switch ($action) {
     }}
     include '../view/addcategory.php';
     break;
+    
+    
   case 'createProduct':
       $message='';
       include '../view/addproduct.php';
@@ -81,37 +94,41 @@ switch ($action) {
   
   case 'addNewProduct':
     
-      $invname = filter_input(INPUT_POST, 'invname');
-      $invdescription = filter_input(INPUT_POST, 'invdescription');
-      $invimage = filter_input(INPUT_POST, 'invimage');
-      $invthumbnail = filter_input(INPUT_POST, 'invthumbnail');
-      $invprice = filter_input(INPUT_POST, 'invprice');
-      $invstock = filter_input(INPUT_POST, 'invstock');
-      $invsize = filter_input(INPUT_POST, 'invsize');
-      $invweight = filter_input(INPUT_POST, 'invweight');
-      $invlocation = filter_input(INPUT_POST, 'invlocation');
-      $categoryid = filter_input(INPUT_POST, 'categories');
-      $invvendor = filter_input(INPUT_POST, 'invvendor');
-      $invstyle = filter_input(INPUT_POST, 'invstyle');
+      $invName = filter_input(INPUT_POST, 'invName', FILTER_SANITIZE_STRING);
+      $invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING);
+      $invImage = filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING);
+      $invThumbnail = filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING);
+      $invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT);
+      $invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);
+      $invSize = filter_input(INPUT_POST, 'invSize', FILTER_SANITIZE_NUMBER_INT);
+      $invWeight = filter_input(INPUT_POST, 'invWeight', FILTER_SANITIZE_NUMBER_FLOAT);
+      $invLocation = filter_input(INPUT_POST, 'invLocation', FILTER_SANITIZE_STRING);
+      $categoryId = filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_STRING);
+      $invVendor = filter_input(INPUT_POST, 'invVendor', FILTER_SANITIZE_STRING);
+      $invStyle = filter_input(INPUT_POST, 'invStyle', FILTER_SANITIZE_STRING);
       
-      if( empty($invname) || empty($invdescription) || empty($invimage) || empty($invthumbnail)
-              || empty($invprice) || empty($invstock) ||  empty($invsize) || empty($invweight)
-              || empty($invlocation) || empty($categoryid) || empty($invvendor) || empty($invstyle)) {
+      if (empty($invName) || empty($invDescription) || empty($invImage) || empty($invThumbnail)
+              || empty($invPrice) || empty($invStock) ||  empty($invSize) || empty($invWeight)
+              || empty($invLocation) || empty($categoryId) || empty($invVendor) || empty($invStyle)) {
         $message = '<p>Please provide information for all empty form fields.</p>';
        
         
-    }
-    $newproduct = newProduct($invname, $invdescription, $invimage, $invthumbnail, $invprice, $invstock, $invsize, $invweight, $invlocation, $categoryid, $invvendor, $invstyle);
-    if($newproduct === 1) {
-        $message = "<p>Thank you for adding the new product $invname to the inventory.</p>";
+    } else{
+    
+    
+    $newProduct = newProduct($invName, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invSize, $invWeight, $invLocation, $categoryId, $invVendor, $invStyle);
+    
+    if($newProduct === 1) {
+        $message = "<p>Thank you for adding the new product $invName to the inventory.</p>";
         
     } else {
-        $message = "<p>Sorry but the new product $invname has failed to be added. Please try again.</p>";
+        $message = "<p>Sorry but the new product $invName has failed to be added. Please try again.</p>";
         
-    }
+    }}
     include '../view/addproduct.php';
     break;
   default:
       include'../view/prod-mgmt.php';
+      exit;
     
 }

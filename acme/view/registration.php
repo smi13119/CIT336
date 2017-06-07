@@ -28,7 +28,7 @@ Registration
                 
         -->
                 
-                <?php echo navigation(); ?>
+                <?php echo navigation();?>
                        
              </nav>   
             </div>
@@ -64,7 +64,7 @@ Registration
                     <br><br>
                     <input type='submit' value='Submit'>
                     <!--Add the action name - value pair -->
-                    <input type="hidden" name="action" value="registration">
+                    <input type="hidden" name="action" value="register">
                     
                 </form>
             </div>
