@@ -150,7 +150,12 @@ break;
 
 default:
       include'../view/login.php';
-      exit;
+      break;
+      
+    case 'Logout':
+        session_distroy();
+        header('location:/acme');
+        exit;
 
 
 

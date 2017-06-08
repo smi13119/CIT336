@@ -41,7 +41,7 @@ Login
                     echo $message;
                 }
                 ?>
-                <form action="/acme/accounts/index.php?action=login" method="post">
+                <form action="/acme/accounts/index.php?action=Login" method="post">
                     <fieldset>
                         <label for="email">Email address:</label>
                         <br>
@@ -51,7 +51,7 @@ Login
                     <br>
                     <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
                     <br>
-                    <input type='password' name="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                    <input type='password' name="password" id="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
                     <br><br>
                     <input type='hidden' name="action" value='Login'>
                     <input type='submit' value='Login'>

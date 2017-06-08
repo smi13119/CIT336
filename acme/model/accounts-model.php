@@ -54,24 +54,24 @@
      $db = acmeConnect();
      $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail= :email';
      $stmt = $db->prepare($sql);
-     $stmt->bindValue(':email, $email, PDO::PARAM_STR');
+     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
      $stmt->execute();
      $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
      $stmt->closeCursor();
      return $clientData;
  }
- //Get client data based on email and password
- function getClientlogin($email,$password){
-     $db = acmeConnect();
-     $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail= :email and passord= :password';
-     $stmt = $db->prepare($sql);
-     $stmt->bindValue(':email, $email, PDO::PARAM_STR');
-     $stmt->bindValue(':password, $password, PDO::PARAM_STR');
-     $stmt->execute();
-     $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
-     $stmt->closeCursor();
-     return $clientData;
- }
+// //Get client data based on email and password
+// function getClientlogin($email,$password){
+//     $db = acmeConnect();
+//     $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail= :email and passord= :password';
+//     $stmt = $db->prepare($sql);
+//     $stmt->bindValue(':email, $email, PDO::PARAM_STR');
+//     $stmt->bindValue(':password, $password, PDO::PARAM_STR');
+//     $stmt->execute();
+//     $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+//     $stmt->closeCursor();
+//     return $clientData;
+// }
  
 // if (empty($matchEmail)){
 //    //return 0;

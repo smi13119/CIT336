@@ -1,6 +1,10 @@
 <?php
-$clientdata =$_SESSION['clientData'];
-if $_SESSION['loggedin']==TRUE {
+
+if(isset($_SESSION["loggedin"])){
+    echo '<a href="/accounts/index.php?action=Logout">Logout</a>';
+}else{
+   echo '<a href="/accounts/index.php?action=login" title "Login or Register">My Account</a>';
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -38,9 +42,27 @@ Admin View
             </div>
        
         <main id="page-main">
-            <div>
-<h1>Welcome<?php echo $clientData ['$firstname, $lastname, $email, $password,']?></h1>
+            <div class="userdata">
                 
+                <?php
+                $firstname = $_SESSION['clientData']['clientFirstname'];
+                $lastname = $_SESSION['clientData']['clientLastname'];
+                $email = $_SESSION['clientData']['clientEmail'];
+                $level = $_SESSION['clientData']{'clientLevel'];
+                
+                 echo "<h1>$firstname $lastname</h1>
+                     
+                 <ul>
+                         <li>First name: $firstname</li>
+                         <li>Last name: $lastname</li>
+                         <li>Emai: $email</li>
+                         <li>Level: $level</li>
+                 </ul>";
+                 
+                 if ($level ==3){
+                 echo '<a href="/acem/products/index.php?action=prod-mgmt">Products</a><br>';
+                         }
+                         ?>
                 
             </div>
         </main>
@@ -54,4 +76,3 @@ Admin View
     </body>
 </html>
 
-<?php } ?>

@@ -170,3 +170,13 @@ li.active {
 .reduce {
     font-size: .4em;
 }
+
+.userdata {
+    font-family:comic sans ms, cursive;
+    font-size: 1.3em;
+}
+.userdata-li {
+    display: inline;
+    padding: 8px 3px 15px 3px;
+    font-size: 1.3em;
+}

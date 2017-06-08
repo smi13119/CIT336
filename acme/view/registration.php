@@ -46,7 +46,7 @@ Registration
                   
                     <label for="firstname">First Name:</label>
                     <br>
-                    <input type='text'  name='firstname' id='firstname'<?php if (isset($firstname)){echo "value='$firstname'";} ?> required>
+                    <input type='firstname' name='firstname' id='firstname'<?php if (isset($firstname)){echo "value='$firstname'";} ?> required>
                     <br>
                     <label for="lastname">Last Name:</label>
                         <br>
@@ -60,7 +60,7 @@ Registration
                     <br>
                     <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
                     <br>
-                    <input type='password' name='password' id='password' required pattern="(?=^.{8,}$)(?=.*\d)(?=.\W+)(?![.\n](?=.*[A-Z])(?=.[a-z]).*$">
+                    <input type='password' name='password' id='password' required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.[a-z]).*$">
                     <br><br>
                     <input type='submit' value='Submit'>
                     <!--Add the action name - value pair -->
