@@ -49,8 +49,17 @@ if ($action == NULL){
 
 switch ($action){
     case 'login':
+     $email = filter_input(INPUT_POST, 'email');
+     $email = checkEmail($email);
+     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+     $checkPassword = checkPassword($password);
+      // Run basic checks, return if errors
+     if (empty($emailaddress) || empty($passwordCheck)) {
+     $message = '<p>Please provide a valid email address and password.</p>';
       include '../view/login.php';
         break;
+         exit;
+     }
          
      case 'home':
      include '../view/home.php';
@@ -140,8 +149,8 @@ if (!$hashCheck) {
 //a valid user exists, log them in
 $_SESSION['loggedin'] = TRUE;
 //remove the password from the array_pop fuction removes the last element form an array
-array_pop($clientData);
-//Store the array into the session
+//array_pop($clientData);
+////Store the array into the session
 $_SESSION['clientData'] = $clientData;
 //Send them to the admin view
 include '../view/admin.php';
@@ -150,10 +159,10 @@ break;
 
 default:
       include'../view/login.php';
-      break;
+    exit;
       
     case 'Logout':
-        session_distroy();
+        session_destroy();
         header('location:/acme');
         exit;
 

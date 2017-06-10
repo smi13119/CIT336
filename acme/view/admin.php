@@ -1,11 +1,3 @@
-<?php
-
-if(isset($_SESSION["loggedin"])){
-    echo '<a href="/accounts/index.php?action=Logout">Logout</a>';
-}else{
-   echo '<a href="/accounts/index.php?action=login" title "Login or Register">My Account</a>';
-}
-?>
 <!DOCTYPE html>
 <!--
 Admin View
@@ -48,7 +40,7 @@ Admin View
                 $firstname = $_SESSION['clientData']['clientFirstname'];
                 $lastname = $_SESSION['clientData']['clientLastname'];
                 $email = $_SESSION['clientData']['clientEmail'];
-                $level = $_SESSION['clientData']{'clientLevel'];
+                $level = $_SESSION['clientData']['clientLevel'];
                 
                  echo "<h1>$firstname $lastname</h1>
                      
@@ -60,7 +52,7 @@ Admin View
                  </ul>";
                  
                  if ($level ==3){
-                 echo '<a href="/acem/products/index.php?action=prod-mgmt">Products</a><br>';
+                 echo '<a href="/acme/products/index.php?action=prod-mgmt">Products</a><br>';
                          }
                          ?>
                 
@@ -75,4 +67,5 @@ Admin View
         </div>
     </body>
 </html>
+
 

@@ -12,6 +12,9 @@ foreach ($categoriesAndIds as $catAndId) {
     $catList .= ">$catAndId[categoryName]</option>";
 }
 $catList .= "</select>";
+
+if (session_id()== ''|| $_SESSION['clientData']['clientLevel']!=3){
+header('location:/acme/index.php');}
 ?>
 <!DOCTYPE html>
 <!--

@@ -48,13 +48,12 @@ if($action == NULL){
 }
 //check if the firstname exists and get it's value
 if(isset($_COOKIE ['firstname'])){
-    $cookieFirstname = filter_input(INPUT_cookie, 'firstname', FILTER_SANITIZE_STRING);
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
 }
 
 switch ($action){
  case 'home':
   include 'view/home.php';
-
-     break;
 }
+
 

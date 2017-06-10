@@ -174,9 +174,14 @@ li.active {
 .userdata {
     font-family:comic sans ms, cursive;
     font-size: 1.3em;
+    color:#000;
 }
-.userdata-li {
-    display: inline;
-    padding: 8px 3px 15px 3px;
-    font-size: 1.3em;
+
+
+.logout {
+    width: 60%; 
+    float:right; 
+    display:block; 
+    margin:0;
+    color:#000;
 }
