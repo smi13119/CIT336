@@ -25,11 +25,11 @@ Header
         if(isset($_SESSION['loggedin'])){
             echo '<div><a href="/acme/accounts/index.php?action=Logout">Logout</a></div>';
             } else {
+                
             echo '<a href="/acme/accounts/index.php?action=login" title="Login or Register">My Account</a>';
+              
+       
             }
             ?>
     </div>
-   
     
-
-   

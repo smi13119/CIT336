@@ -68,7 +68,7 @@ Add Category View
                     <label>Product Image (path to image)</label>
                     <input type= "text" name="invImage" value="/acme/images/no-image.png"<?php if(isset($invImage)){echo "value='$invImage'";} ?> required />
                     <label>Product Thumbnail (path to thumbnail)</label>
-                    <input type="text" name="invThumbnail"<?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required />
+                    <input type="text" name="invThumbnail"value="/acme/images/no-image.png"<?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required />
                     <label>Product Price</label>
                     <input type="number" name="invPrice"<?php if(isset($invPrice)){echo "value='$invPrice'";} ?> required />
                     <label>Product Stock</label>

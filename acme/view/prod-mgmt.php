@@ -1,5 +1,9 @@
-<?php if (session_id()== ''|| $_SESSION['clientData']['clientLevel']!=3){
+<?php if (session_id()== ''|| $_SESSION['clientData']['clientLevel']<=2){
 header('location:/acme/index.php');
+
+if(isset($_SESSION['message'])){
+    $message = $_SESSION['message'];
+}
    }?>
 <!DOCTYPE html>
 <!--
@@ -43,8 +47,16 @@ Product Management
                 <ul>
                     <li><a href="/acme/products/index.php?action=createCategory" title="Add Category">Add a New Category</a></li>
                     <li><a href="/acme/products/index.php?action=createProduct" title="Add a New Product">Add a New Product</a> </li>
-                </ul>
+                 </ul>
+                        <?php
+            if (isset($message)) {
+            echo $message;
+            } if (isset($prodList)) {
+            echo $prodList;
+}
+?>
             </div>
+     
         </main>
             <footer id="page-footer">
                 <div>
@@ -55,3 +67,4 @@ Product Management
         </div>
     </body>
 </html>
+<?php unset($_SESSION['message']);?>

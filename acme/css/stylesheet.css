@@ -167,6 +167,10 @@ li.active {
     
 }
 
+.modifyproductform lable, .modifyproductform input {
+    display:block;
+}
+
 .reduce {
     font-size: .4em;
 }

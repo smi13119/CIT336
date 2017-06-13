@@ -44,13 +44,58 @@ function newProduct($invName, $invDescription, $invImage, $invThumbnail, $invPri
    $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
    $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
-   $stmt->bindValue(':invStock', $invStock, PDO::PARAM_STR);
-   $stmt->bindValue(':invSize', $invSize, PDO::PARAM_STR);
-   $stmt->bindValue(':invWeight', $invWeight, PDO::PARAM_STR);
+   $stmt->bindValue(':invStock', $invStock, PDO::PARAM_INT);
+   $stmt->bindValue(':invSize', $invSize, PDO::PARAM_INT);
+   $stmt->bindValue(':invWeight', $invWeight, PDO::PARAM_INT);
    $stmt->bindValue(':invLocation', $invLocation, PDO::PARAM_STR);
-   $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_STR);
+   $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT);
    $stmt->bindValue(':invVendor', $invVendor, PDO::PARAM_STR);
    $stmt->bindValue(':invStyle', $invStyle, PDO::PARAM_STR);
+   $stmt->execute();
+   $rowsChanged = $stmt->rowCount();
+   $stmt->closeCursor();
+   return $rowsChanged;
+}
+
+//get Products pasic function
+function getProductBasics() {
+ $db = acmeConnect();
+ $sql = 'SELECT invName, invId FROM inventory ORDER BY invName ASC';
+ $stmt = $db->prepare($sql);
+ $stmt->execute();
+ $products = $stmt->fetchAll(PDO::FETCH_NAMED);
+ $stmt->closeCursor();
+ return $products;
+}
+
+function getProductInfo($prodId){
+ $db = acmeConnect();
+ $sql = 'SELECT * FROM inventory WHERE invId = :prodId';
+ $stmt = $db->prepare($sql);
+ $stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);
+ $stmt->execute();
+ $prodInfo = $stmt->fetch(PDO::FETCH_NAMED);
+ $stmt->closeCursor();
+ return $prodInfo;
+}
+
+function updateProduct($prodName, $prodDescription, $prodImage, $prodThumbnail, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $categoryId, $prodVendor, $prodStyle, $prodId){
+     $db = acmeConnect();
+      $sql = $sql = 'UPDATE inventory SET invName = :prodName, invDescription = :prodDesc, invImage = :prodImg, invThumbnail = :prodThumb, invPrice = :prodPrice, invStock = :prodStock, invSize = :prodSize, invWeight = :prodWeight, invLocation = :prodLocation, categoryId = :catType, invVendor = :prodVendor, invStyle = :prodStyle WHERE invId = :prodId';
+   $stmt = $db->prepare($sql);
+   $stmt->bindValue(':prodName', $prodName, PDO::PARAM_STR);
+   $stmt->bindValue(':prodDescription', $prodDescription, PDO::PARAM_STR);
+   $stmt->bindValue(':prodImage', $prodImage, PDO::PARAM_STR);
+   $stmt->bindValue(':prodThumbnail', $prodThumbnail, PDO::PARAM_STR);
+   $stmt->bindValue(':prodPrice', $prodPrice, PDO::PARAM_STR);
+   $stmt->bindValue(':prodStock', $prodStock, PDO::PARAM_INT);
+   $stmt->bindValue(':prodSize', $prodSize, PDO::PARAM_INT);
+   $stmt->bindValue(':prodWeight', $prodWeight, PDO::PARAM_INT);
+   $stmt->bindValue(':prodLocation', $prodLocation, PDO::PARAM_STR);
+   $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT);
+   $stmt->bindValue(':prodVendor', $prodVendor, PDO::PARAM_STR);
+   $stmt->bindValue(':prodStyle', $prodStyle, PDO::PARAM_STR);
+   $stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);
    $stmt->execute();
    $rowsChanged = $stmt->rowCount();
    $stmt->closeCursor();

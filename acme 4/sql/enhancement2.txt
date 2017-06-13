@@ -1,0 +1,19 @@
+INSERT INTO clients (clientid, clientFirstname, clientLastname, clientEmail, clientPassword, comments)
+VALUES ('1', 'Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n', 'I am the real Ironman')
+
+UPDATE clients SET clientLevel = 3 WHERE clientFirstname = 'Tony' and clientLastname = 'Stark'
+
+
+UPDATE inventory
+SET invName = REPLACE('Nylon Rope', 'Nylon', 'Climbing'),  invDescription = REPLACE('This nylon rope is ideal for all uses. Each rope is the highest quality nylon and comes in 100 foot lengths.', 'nylon', 'climbing'),
+invStyle = REPLACE('Nylon', 'Nylon', 'Climbing')
+WHERE invName ='Nylon Rope';
+
+SELECT invName, b.categoryName
+FROM inventory a 
+INNER JOIN categories b ON a.categoryId = b.categoryId
+WHERE b.categoryId = 3
+
+DELETE FROM inventory WHERE invId = 7
+
+

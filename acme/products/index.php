@@ -54,6 +54,7 @@ switch ($action) {
       $message='';
       include '../view/addcategory.php';
       break;
+  
     
   case 'addNewCategory':
       //Filter to store the new data
@@ -92,6 +93,8 @@ switch ($action) {
       include '../view/addproduct.php';
       break;
   
+  
+  
   case 'addNewProduct':
     
       $invName = filter_input(INPUT_POST, 'invName', FILTER_SANITIZE_STRING);
@@ -127,8 +130,76 @@ switch ($action) {
     }}
     include '../view/addproduct.php';
     break;
-  default:
+    
+          case 'mod':
+          $prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+ $prodInfo = getProductInfo($prodId);
+ if(count($prodInfo)<1){
+  $message = 'Sorry, no product information could be found.';
+ }
+ include '../view/prod-update.php';
+ exit;
+break;
+        
+      case 'prod-mgmt':
+$products = getProductBasics();
+ if(count($products) > 0){
+  $prodList = '<table>';
+  $prodList .= '<thead>';
+  $prodList .= '<tr><th>Product Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>';
+  $prodList .= '</thead>';
+  $prodList .= '<tbody>';
+  foreach ($products as $product) {
+   $prodList .= "<tr><td>$product[invName]</td>";
+   $prodList .= "<td><a href='/acme/products?action=mod&id=$product[invId]' title='Click to modify'>Modify</a></td>";
+   $prodList .= "<td><a href='/acme/products?action=del&id=$product[invId]' title='Click to delete'>Delete</a></td></tr>";
+  }
+   $prodList .= '</tbody></table>';
+  } else {
+   $message = '<p class="notify">Sorry, no products were returned.</p>';
+}
+include '../view/prod-mgmt.php';
+          break;
+          
+      case 'updateProd':
+          $prodName = filter_input(INPUT_POST, 'prodName', FILTER_SANITIZE_STRING);
+          $prodDescription = filter_input(INPUT_POST, 'prodDescription', FILTER_SANITIZE_STRING);
+          $prodImage = filter_input(INPUT_POST, 'prodImage', FILTER_SANITIZE_STRING);
+          $prodThumbnail = filter_input(INPUT_POST< 'prodThumbnail', FILTER_SANITIZE_STRING);
+          $prodPrice = filter_input(INPUT_POST, 'prodPrice', FILTER_SANITIZE_NUMBER_FLOAT);
+          $prodStock = filter_input(INPUT_POST, 'prodStock', FILTER_SANITIZE_NUMBER_INT);
+          $prodSize = filter_input(INPUT_POST, 'prodSize', FILTER_SANITIZE_NUMBER_INT);
+          $prodWeight = filter_input(INPUT_POST, 'prodWeight', FILTER_SANITIZE_NUMBER_INT);
+          $prodLocation = filter_input(INPUT_POST, 'prodLocation', FILTER_SANITIZE_STRING);
+          $categoryId = filter_input(INPUT_POST, 'categoryId', FILTER_SANITIZE_STRING);
+          $prodVendor = filter_input(INPUT_POST, 'prodVendor', FILTER_SANITIZE_STRING);
+          $prodStyle = filter_input(INPUT_POST, 'prodStyle', FILTER_SANITIZE_STRING);
+          $prodId = filter_input(INPUT_POST, 'prodId', FILTER_SANITIZE_NUMBER_INT);
+          
+          if (empty($prodName) || empty($prodDescription) || empty($prodImage) || empty($prodThumbnail) || empty($prodPrice) || empty($prodStock) || empty($prodSize)  || empty($prodWeight)  || empty($prodLocation) || empty($categoryId) || emtpy ($prodVendor) || empty($prodStyle)){
+              $message ='<p>Please complete all information of the item! Double check the category of the item.</p>';
+              include '../view/prod-update.php';
+              exit;
+          }
+          $updateResult = updateProduct($prodName, $prodDescription, $prodImage, $prodThumbnail, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $prodVendor, $prodStyle, $categoryId, $prodId);
+          
+          if ($updateResult) {
+              $message = '<p>Congratulations, $prodName was sucessfully updated.</p>';
+              $_SESSION['message'] = $message;
+              header('location:/acme/products/');
+              exit;
+          }else{
+              $message = "<p> Error. $prodName was not updated.</p>";
+              include '../view/prod-update.php';
+              exit;
+          }
+
+
+    break;
+      
+      default;
       include'../view/prod-mgmt.php';
       exit;
+     
     
 }
