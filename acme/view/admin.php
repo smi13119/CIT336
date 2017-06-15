@@ -34,6 +34,7 @@ Admin View
             </div>
        
         <main id="page-main">
+            <h1>You are Logged in</h1>
             <div class="userdata">
                 
                 <?php
@@ -48,11 +49,16 @@ Admin View
                          <li>First name: $firstname</li>
                          <li>Last name: $lastname</li>
                          <li>Emai: $email</li>
-                         <li>Level: $level</li>
+                         
                  </ul>";
-                 
+                 echo '<a href="acme/accounts/index.php?action=client-update">Update Account Information</a><br>';
+                 ?>
+                 </div>
+            <div class="userdata">
+                
+               <?php
                  if ($level ==3){
-                 echo '<a href="/acme/products/index.php?action=prod-mgmt">Products</a><br>';
+                 echo '<h2>Administrative Functions</h2><a href="/acme/products/index.php?action=prod-mgmt">Products</a><br>';
                          }
                          ?>
                 

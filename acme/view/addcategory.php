@@ -1,5 +1,6 @@
-<?php if (session_id()== ''|| $_SESSION['clientData']['clientLevel']!=3){
+<?php if ($_SESSION['clientData']['clientLevel']< 2){
 header('location:/acme/index.php');
+exit;
    }?>
 <!DOCTYPE html>
 <!--

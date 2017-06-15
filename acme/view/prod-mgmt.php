@@ -1,9 +1,9 @@
-<?php if (session_id()== ''|| $_SESSION['clientData']['clientLevel']<=2){
+<?php if ($_SESSION['clientData']['clientLevel']< 2){
 header('location:/acme/index.php');
-
+exit;
+}
 if(isset($_SESSION['message'])){
     $message = $_SESSION['message'];
-}
    }?>
 <!DOCTYPE html>
 <!--

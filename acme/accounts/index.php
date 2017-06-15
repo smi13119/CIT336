@@ -102,6 +102,10 @@ $message = '<p> Please provide information for all empty form fields.</p>';
 include '../view/login.php';
 exit;       
 }
+
+
+ 
+        
 //A valid password exists, proceed with login process
 //Query the client data base on the email address
 $clientData = getClient($email);

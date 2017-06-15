@@ -1,11 +1,17 @@
 <?php
-$catList = "<select name='categoryId' id=categoryId>";
+if ($_SESSION['clientData']['clientLevel']< 2){
+header('location:/acme/index.php');
+exit;
+}
+?>
+<?php
+$catList = "<select name='catType' id=catType>";
 $catList .= '<option value ="">Please Choose</option>';
 foreach ($categoriesAndIds as $catAndId) {
     $catList .= "<option value='$catAndId[categoryId]'";
-    if(isset($categoryId)){
+    if(isset($catType)){
     
-    if($catAndId['categoryId'] === $categoryId){
+    if($catAndId['categoryId'] === $catType){
       $catList .= ' selected ';
   }
   
@@ -18,8 +24,7 @@ foreach ($categoriesAndIds as $catAndId) {
 }
 $catList .= "</select>";
 
-if (session_id()== ''|| $_SESSION['clientData']['clientLevel']!=3){
-header('location:/acme/index.php');}
+
 ?>
 <!DOCTYPE html>
 <!--
@@ -36,7 +41,7 @@ Add Category View
         <meta name="viewport" content="width=device-width, initial-scael 1.0">
     </head>
     <body>
-        <h1><?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?></h1>
+       
         
         <div id="page-container">
             <header id="page-header">
@@ -60,26 +65,40 @@ Add Category View
        
         <main id="page-main">
             <div>
-               
-                <h1>Modify Product</h1>
+                <h1><?php if(isset($prodInfo['invName'])){ echo "Modify $prodInfo[invName] ";} elseif(isset($prodName)) { echo $prodName; }?></h1>
+                <p><b>Modify Product</b></p>
+                <?php
+                if (isset($message)){
+                    echo $message;
+                }
+                ?>
                
                 
-                <form class="modifyproductform" action="/acme/products/index.php?action=updateProd" method="post">
+               <form class="modifyproductform" action="/acme/products/index.php?action=updateProd" method="post">
                     <fieldset>
                         <label>Category</label><br>
                     <?php echo $catList; ?><br>
+                    
                     <label>Product Name</label>
-                    <input type='text' name='prodName' id="prodName"<?php if(isset($prodName)){echo "value='$prodName'";}
-                        elseif(isset($prodInfo['invName'])) {echo "value='$prodInfo[invName]'"; }?> required><br>
+                    <input type='text' name='prodName' id="prodName" required
+                        <?php if(isset($prodName)){echo "value='$prodName'";}
+                        elseif(isset($prodInfo['invName'])){echo "value='$prodInfo[invName]'"; }?>><br>
+                    
                         <label>Description</label><br>
-                        <textarea rows="5" id="prodDescription" name="prodDescription"  <?php if(isset($prodDescription)){echo $prodDescription; }
-                        elseif(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; }?> required ></textarea><br>
+                        <textarea rows="5" id="prodDescription" name="prodDescription" required>  
+                            <?php if(isset($prodDescription)){echo $prodDescription; }
+                        elseif(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; }?></textarea><br>
+                        
                         <label>Product Image</label><br>
-                        <input id="prodImage" type="text" name="prodImage"  value="/acme/images/no-image.png" <?php if(isset($prodImage))
-                        {echo "value='$prodImage'";}elseif(isset($prodInfo['invImage'])) {echo "value='$prodInfo[invImage]'"; } ?> required ><br>
+                        <input id="prodImage" type="text" name="prodImage"  required 
+                            <?php if(isset($prodImage)){echo "value='$prodImage'";}
+                            elseif(isset($prodInfo['invImage'])) {echo "value='$prodInfo[invImage]'"; }?>><br>
+                        
                         <label>Product Thumbnail</label><br>
-                        <input type="text" id="prodThumbnail" name="prodThumbnail"  value="/acme/images/no-image.png" <?php if(isset($prodThumbnail))
-                        {echo "value='$prodThumbnail'";}elseif(isset($prodInfo['invThumbnail'])) {echo "value='$prodInfo[invThumbnail]'"; } ?> ><br>
+                        <input type="text" id="prodThumbnail" name="prodThumbnail" required
+                            <?php if(isset($prodThumbnail)){echo "value='$prodThumbnail'";}
+                            elseif(isset($prodInfo['invThumbnail'])) {echo "value='$prodInfo[invThumbnail]'"; }?>><br>
+                        
                         <label>Product Price</label><br>
                         <input type="text" id="prodPrice" name="prodPrice" <?php if(isset($prodPrice))
                         {echo "value='$prodPrice'";}elseif(isset($prodInfo['invPrice'])) {echo "value='$prodInfo[invPrice]'"; } ?> required ><br>

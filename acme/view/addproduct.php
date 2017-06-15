@@ -13,8 +13,10 @@ foreach ($categoriesAndIds as $catAndId) {
 }
 $catList .= "</select>";
 
-if (session_id()== ''|| $_SESSION['clientData']['clientLevel']!=3){
-header('location:/acme/index.php');}
+if ($_SESSION['clientData']['clientLevel']< 2){
+header('location:/acme/index.php');
+exit;
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -62,27 +64,27 @@ Add Category View
                    <label>Category</label>
                     <?php echo $catList; ?>
                     <label>Product Name</label>
-                    <input type="text" name="invName"<?php if(isset($invName)){echo "value='$invName'";} ?> required />
+                    <input type="text" name="invName"<?php if(isset($invName)){echo "value='$invName'";} ?> required><br>
                     <label>Product Description</label>
-                    <textarea rows="5" name="invDescription"<?php if(isset($invDescription)){echo "value='$invDescription'";} ?> required></textarea>
+                    <textarea rows="5" name="invDescription" requied><?php if(isset($invDescription)){echo "value='$invDescription'";} ?></textarea>
                     <label>Product Image (path to image)</label>
-                    <input type= "text" name="invImage" value="/acme/images/no-image.png"<?php if(isset($invImage)){echo "value='$invImage'";} ?> required />
+                    <input type= "text" name="invImage" value="/acme/images/no-image.png"<?php if(isset($invImage)){echo "value='$invImage'";} ?> required><br>
                     <label>Product Thumbnail (path to thumbnail)</label>
-                    <input type="text" name="invThumbnail"value="/acme/images/no-image.png"<?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required />
+                    <input type="text" name="invThumbnail"value="/acme/images/no-image.png"<?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required><br>
                     <label>Product Price</label>
-                    <input type="number" name="invPrice"<?php if(isset($invPrice)){echo "value='$invPrice'";} ?> required />
+                    <input type="number" name="invPrice"<?php if(isset($invPrice)){echo "value='$invPrice'";} ?> required><br>
                     <label>Product Stock</label>
-                    <input type="number" name="invStock"<?php if(isset($invStock)){echo "value='$invStock'";} ?> required />
+                    <input type="number" name="invStock"<?php if(isset($invStock)){echo "value='$invStock'";} ?> required><br>
                     <label>Product Size</label>
-                    <input type="number" name="invSize" <?php if(isset($invSize)){echo "value='$invSize'";} ?> required />
+                    <input type="number" name="invSize" <?php if(isset($invSize)){echo "value='$invSize'";} ?> required><br>
                     <label>Product Weight</label>
-                    <input type="number" name="invWeight" <?php if(isset($invWeight)){echo "value='$invWeight'";} ?> required />
+                    <input type="number" name="invWeight" <?php if(isset($invWeight)){echo "value='$invWeight'";} ?> required><br>
                     <label>Product Location</label>
-                    <input type="text" name="invLocation" <?php if(isset($invLocation)){echo "value='$invLocation'";} ?>  required />
+                    <input type="text" name="invLocation" <?php if(isset($invLocation)){echo "value='$invLocation'";} ?>  required><br>
                     <label>Product Vendor</label>
-                    <input type="text" name="invVendor" <?php if(isset($invVendor)){echo "value='$invVendor'";} ?> required />
+                    <input type="text" name="invVendor" <?php if(isset($invVendor)){echo "value='$invVendor'";} ?> required><br>
                     <label>Product Style</label>
-                    <input type="text" name="invStyle" <?php if(isset($invStyle)){echo "value='$invStyle'";} ?> required />
+                    <input type="text" name="invStyle" <?php if(isset($invStyle)){echo "value='$invStyle'";} ?> required>
                     <br>
                     <button type="submit"> Add New Product</button>
                     </fieldset>              

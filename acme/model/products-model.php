@@ -79,10 +79,11 @@ function getProductInfo($prodId){
  return $prodInfo;
 }
 
-function updateProduct($prodName, $prodDescription, $prodImage, $prodThumbnail, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $categoryId, $prodVendor, $prodStyle, $prodId){
+function updateProduct($catType, $prodName, $prodDescription, $prodImage, $prodThumbnail, $prodPrice, $prodStock, $prodSize, $prodWeight, $prodLocation, $prodVendor, $prodStyle, $prodId){
      $db = acmeConnect();
-      $sql = $sql = 'UPDATE inventory SET invName = :prodName, invDescription = :prodDesc, invImage = :prodImg, invThumbnail = :prodThumb, invPrice = :prodPrice, invStock = :prodStock, invSize = :prodSize, invWeight = :prodWeight, invLocation = :prodLocation, categoryId = :catType, invVendor = :prodVendor, invStyle = :prodStyle WHERE invId = :prodId';
+      $sql = 'UPDATE inventory SET invName = :prodName, invDescription = :prodDescription, invImage = :prodImage, invThumbnail = :prodThumbnail, invPrice = :prodPrice, invStock = :prodStock, invSize = :prodSize, invWeight = :prodWeight, invLocation = :prodLocation, categoryId = :catType, invVendor = :prodVendor, invStyle = :prodStyle WHERE invId = :prodId';
    $stmt = $db->prepare($sql);
+   $stmt->bindValue(':catType', $catType, PDO::PARAM_INT);
    $stmt->bindValue(':prodName', $prodName, PDO::PARAM_STR);
    $stmt->bindValue(':prodDescription', $prodDescription, PDO::PARAM_STR);
    $stmt->bindValue(':prodImage', $prodImage, PDO::PARAM_STR);
@@ -92,7 +93,6 @@ function updateProduct($prodName, $prodDescription, $prodImage, $prodThumbnail, 
    $stmt->bindValue(':prodSize', $prodSize, PDO::PARAM_INT);
    $stmt->bindValue(':prodWeight', $prodWeight, PDO::PARAM_INT);
    $stmt->bindValue(':prodLocation', $prodLocation, PDO::PARAM_STR);
-   $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT);
    $stmt->bindValue(':prodVendor', $prodVendor, PDO::PARAM_STR);
    $stmt->bindValue(':prodStyle', $prodStyle, PDO::PARAM_STR);
    $stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);
@@ -100,4 +100,16 @@ function updateProduct($prodName, $prodDescription, $prodImage, $prodThumbnail, 
    $rowsChanged = $stmt->rowCount();
    $stmt->closeCursor();
    return $rowsChanged;
+   
+}
+//function to cary out product delete
+function delteProduct($prodId) {
+      $db = acmeConnect();
+    $sql = 'DELETE FROM inventory WHERE invId = :prodId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':prodId', $prodId, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
 }
