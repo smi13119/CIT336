@@ -17,7 +17,7 @@ Header
         }?> 
 <figure class="header-right">
         <img class="img50p" src='/acme/images/site/account.gif' alt='account'/>
-    </figure>   
+        
         <div class="logout"> 
      <?php
      
@@ -32,4 +32,6 @@ Header
             }
             ?>
     </div>
+    </figure>   
+        
     

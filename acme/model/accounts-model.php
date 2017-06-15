@@ -56,6 +56,16 @@
      $stmt->closeCursor();
      return $clientData;
  }
- //function to update client information
-
+ function getClientInfo($clientId) {
+     $db = acmeConnect();
+     $sql = 'SELECT * FROM clients WHERE clientId = :updateId';
+     $stmt = $db->prepare($sql);
+     $stmt->bindVaule (':updateId', $clientId, PDO::PARAM_INT);
+     $stmt->execute();
+     $clientInfo = $stmt->fetch(PDO::FETCH_NAMED);
+     $stmt->closeCursor();
+     return $clientInfo;
+ }
+     
+         
  

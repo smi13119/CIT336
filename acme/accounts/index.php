@@ -102,9 +102,22 @@ $message = '<p> Please provide information for all empty form fields.</p>';
 include '../view/login.php';
 exit;       
 }
-
-
- 
+//    case 'update';
+//        $clientid = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+//        $clientInfo = getClientInfo($clientId);
+//        if (count($clientId)<1) {
+//            $message = 'Sorry, no client information could be found.';
+//        }
+//        include '../view/client-update.php';
+//        exit;
+//        break;
+//        
+//    case 'client-update':
+//           
+//            include '../view/client-update.php';
+//        break;
+//    
+    
         
 //A valid password exists, proceed with login process
 //Query the client data base on the email address
@@ -128,7 +141,7 @@ include '../view/admin.php';
 exit;
 break;
 
-
+   
 default:
       include'../view/login.php';
     exit;

@@ -45,7 +45,7 @@ Login
                     <fieldset>
                         <label for="email">Email address:</label>
                         <br>
-                    <input type='email' name='email' id="email" <?php if (isset($email)){echo "value='email'";} ?> required>
+                    <input type='email' name='email' id="email" <?php if (isset($email)){echo "value='$email'";} ?> required>
                     <br>
                     <label for="password">Password:</label>
                     <br>

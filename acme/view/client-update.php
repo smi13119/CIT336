@@ -4,6 +4,13 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
  exit;
 }
 ?>
+<?php
+if (isset ($message)) {
+    echo $message;
+} if (isset($clientList)) {
+    echo $clientList;
+}
+?>
 <!DOCTYPE html>
 <!--
 template 
