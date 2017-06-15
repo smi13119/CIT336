@@ -4,13 +4,6 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
  exit;
 }
 ?>
-<?php
-if (isset ($message)) {
-    echo $message;
-} if (isset($clientList)) {
-    echo $clientList;
-}
-?>
 <!DOCTYPE html>
 <!--
 template 
@@ -24,7 +17,7 @@ template
         <link href="/acme/css/stylesheet.css" type="text/css" rel="stylesheet"/>
         
         <meta name="viewport" content="width=device-width, initial-scael 1.0">
-        <title><?php if (isset?></title>
+        <title></title>
     </head>
     <body>
         <div id="page-container">
@@ -46,42 +39,60 @@ template
                        
              </nav>   
             </div>
+           
        
         <main id="page-main">
-            <h1><?php if(isset?></h1>
             
-            <form method="post" action="/acme/accounts/index.php?action=updateAccount">
+            <div class="userdata">
+                
+                <?php
+                $firstname = $_SESSION['clientData']['clientFirstname'];
+                $lastname = $_SESSION['clientData']['clientLastname'];
+                $email = $_SESSION['clientData']['clientEmail'];
+                $level = $_SESSION['clientData']['clientLevel'];
+                
+                 echo "<h1>$firstname $lastname</h1>
+                     
+                 <ul>
+                         <li>First name: $firstname</li>  
+                         <li>Last name: $lastname</li>
+                         <li>Emai: $email</li>
+                         
+                 </ul>";
+                 ?>
+                 </div>
+             <?php
+                if (isset($message)){
+                    echo $message;
+                }
+                ?>
+            <form method="post" name='accountupdate' action="/acme/accounts/index.php?action=updateAccount">
                 <fieldset>
-                    <p>Modify your account information:</p>
-                    <?php
-                    if(isset($message)){
-                        echo $message;
-                    }
-                    ?>
-                    <lable>First Name</lable>
-                    <input type="text" name="firstName" id="firstName" required
-                    <?php if
-                        ?>><br>
+                    <h1>Modify your account information:</h1>
                     
-                    <lable>Last Name</lable>
-                    <input type="text" name="lastName" id="lastName" required
-                    <?php if
-                        ?>><br>
+                    <label>First Name</label><br>
+                    <input type="text" name="upfirstName" id="upfirstName" required<?php if (isset($upfirstName)){echo "value='$upfirstName'";} ?>><br>
                     
-                    <lable>Email Address<label>
-                    <input type="text" name="email" id="email" required
-                    <?php if
-                        ?>><br>
+                    
+                    <label>Last Name</label><br>
+                    <input type="text" name="uplastName" id="uplastName" required<?php if (isset($uplastname)){echo "value='$uplastname'";} ?>><br>
+                    
+                    
+                    <label>Email Address<label><br>
+                            <input type="text" name="upemail" id="upemail" required<?php if (isset($upemail)){echo "value='$upemail'";} ?>><br>
+                            
+                    <input type="hidden" name="updateId" value="<?php if(isset($clientinfo['clientId'])){ echo $clientinfo['clientId'];} elseif(isset($clientId)){ echo $updateId; } ?>">
+                    <button type="submit" name="submit"> Update Data</button>
                     </fieldset>
             </form>
             <div>
                 <form method ="post" action="/acme/accounts/index.php?action=updatePassword">
                     <fieldset>
-                        <p>Modify your Email:</p>
-                        <lable>Email</lable>
-                        <input type="text" name="email" id="email" required
-                        <?php if
-                            ?>><br>
+                        <h1>Modify your Password:</h1>
+                        <label>Password</lable><br>
+                        <input type="text" name="uppassword" id="uppassword" required
+                   
+                         <button type="submit" name="submit"> Update Data</button>      
             </div>
         </main>
             <footer id="page-footer">

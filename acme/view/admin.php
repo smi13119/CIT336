@@ -34,7 +34,7 @@ Admin View
             </div>
        
         <main id="page-main">
-            <h1>You are Logged in</h1>
+            <h1>You are Logged in:</h1>
             <div class="userdata">
                 
                 <?php
@@ -51,7 +51,7 @@ Admin View
                          <li>Emai: $email</li>
                          
                  </ul>";
-                 echo '<a href="acme/accounts/index.php?action=client-update">Update Account Information</a><br>';
+                 echo '<a href="/acme/accounts/index.php?action=client-update">Update Account Information</a><br>';
                  ?>
                  </div>
             <div class="userdata">

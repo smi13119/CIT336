@@ -102,21 +102,33 @@ $message = '<p> Please provide information for all empty form fields.</p>';
 include '../view/login.php';
 exit;       
 }
-//    case 'update';
-//        $clientid = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-//        $clientInfo = getClientInfo($clientId);
-//        if (count($clientId)<1) {
-//            $message = 'Sorry, no client information could be found.';
-//        }
-//        include '../view/client-update.php';
-//        exit;
-//        break;
-//        
-//    case 'client-update':
-//           
-//            include '../view/client-update.php';
-//        break;
-//    
+    case 'updateAccount':
+        $updateId = filter_input(INPUT_POST, 'updateId', FILTER_SANITIZE_NUMBER_INT);
+        $upfirstName = filter_input(INPUT_POST, 'upfirstName', FILTER_SANITIZE_STRING);
+        $uplastName = filter_input(INPUT_POST, 'uplastName', FILTER_SANITIZE_STRING);
+        $upemail = filter_input(INPUT_POST, 'upemail', FILTER_SANITIZE_EMAIL);
+
+if (empty($updateId) || empty($upfirstName) || empty ($uplastName) || empty ($upemail)){
+    $message='<p>Please complete all the information</p>';
+        }
+         $updata = updateData($updateId, $upfirstName, $uplastName, $upemail);
+          
+          if ($updata) {
+              $message = "<p>Congratulations, $upfirstName was sucessfully updated.</p>";
+              $_SESSION['message'] = $message;
+              header('location: /acme/accounts/');
+              exit;
+          } else {
+              $message = "<p>Error. $upfirstName was not updated.</p>";
+              include '../view/client-update.php';
+              exit;
+          }
+    break;
+
+       
+        
+    
+    
     
         
 //A valid password exists, proceed with login process
@@ -142,10 +154,16 @@ exit;
 break;
 
    
-default:
+
+    
+      case 'client-update':
+           
+            include '../view/client-update.php';
+        break;
+    
+    default:
       include'../view/login.php';
     exit;
-      
     case 'Logout':
         session_destroy();
         header('location:/acme');

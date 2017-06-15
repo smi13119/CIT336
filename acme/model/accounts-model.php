@@ -56,16 +56,31 @@
      $stmt->closeCursor();
      return $clientData;
  }
- function getClientInfo($clientId) {
+ function updateData($updateId) {
      $db = acmeConnect();
      $sql = 'SELECT * FROM clients WHERE clientId = :updateId';
      $stmt = $db->prepare($sql);
-     $stmt->bindVaule (':updateId', $clientId, PDO::PARAM_INT);
+     $stmt->bindValue (':updateId', $updateId, PDO::PARAM_INT);
      $stmt->execute();
      $clientInfo = $stmt->fetch(PDO::FETCH_NAMED);
      $stmt->closeCursor();
      return $clientInfo;
  }
+ 
+ function updateAccount($updateId, $upfirstName, $uplastName, $upemail){
+     $db = acmeConnect();
+      $sql = 'UPDATE inventory SET firstname = :upfirstName, lastname = :uplastName, email = :upemail, WHERE clientId = :updateId';
+   $stmt = $db->prepare($sql);
+   $stmt->bindValue(':updateId', $updateId, PDO::PARAM_INT);
+   $stmt->bindValue(':upfirstName', $upfirstName, PDO::PARAM_STR);
+   $stmt->bindValue(':uplastName', $uplastName, PDO::PARAM_STR);
+   $stmt->bindValue(':upemail', $upemail, PDO::PARAM_STR);
+   $stmt->execute();
+   $rowsChanged = $stmt->rowCount();
+   $stmt->closeCursor();
+   return $rowsChanged;
+ }
+
      
          
  
