@@ -54,7 +54,7 @@ Product Delete
                         <textarea name="prodDescription" readonly id="prodDescription">
                             <?php if(isset($prodDesccription)){ echo $prodDescription; }
                         elseif(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; }?>
-                        </textarea>
+                        </textarea><br><br>
                         
                         <label>&nbsp;</label>
                         <input type="submit" name="submit" value="Delete Product">
