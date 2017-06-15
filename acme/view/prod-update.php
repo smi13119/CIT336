@@ -80,23 +80,18 @@ Add Category View
                     <?php echo $catList; ?><br>
                     
                     <label>Product Name</label>
-                    <input type='text' name='prodName' id="prodName" required
-                        <?php if(isset($prodName)){echo "value='$prodName'";}
+                    <input type='text' name='prodName' id="prodName" required<?php if(isset($prodName)){echo "value='$prodName'";}
                         elseif(isset($prodInfo['invName'])){echo "value='$prodInfo[invName]'"; }?>><br>
                     
                         <label>Description</label><br>
-                        <textarea rows="5" id="prodDescription" name="prodDescription" required>  
-                            <?php if(isset($prodDescription)){echo $prodDescription; }
-                        elseif(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; }?></textarea><br>
+                        <textarea rows="5" id="prodDescription" name="prodDescription" required><?php if(isset($prodDescription)){echo $prodDescription; } elseif(isset($prodInfo['invDescription'])) {echo $prodInfo['invDescription']; }?></textarea><br>
                         
                         <label>Product Image</label><br>
-                        <input id="prodImage" type="text" name="prodImage"  required 
-                            <?php if(isset($prodImage)){echo "value='$prodImage'";}
+                        <input id="prodImage" type="text" name="prodImage"  required <?php if(isset($prodImage)){echo "value='$prodImage'";}
                             elseif(isset($prodInfo['invImage'])) {echo "value='$prodInfo[invImage]'"; }?>><br>
                         
                         <label>Product Thumbnail</label><br>
-                        <input type="text" id="prodThumbnail" name="prodThumbnail" required
-                            <?php if(isset($prodThumbnail)){echo "value='$prodThumbnail'";}
+                        <input type="text" id="prodThumbnail" name="prodThumbnail" required <?php if(isset($prodThumbnail)){echo "value='$prodThumbnail'";}
                             elseif(isset($prodInfo['invThumbnail'])) {echo "value='$prodInfo[invThumbnail]'"; }?>><br>
                         
                         <label>Product Price</label><br>
