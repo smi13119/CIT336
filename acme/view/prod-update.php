@@ -80,7 +80,7 @@ Add Category View
                     <?php echo $catList; ?><br>
                     
                     <label>Product Name</label>
-                    <input type='text' name='prodName' id="prodName" required<?php if(isset($prodName)){echo "value='$prodName'";}
+                    <input type='text' name='prodName' id="prodName" required <?php if(isset($prodName)){echo "value='$prodName'";}
                         elseif(isset($prodInfo['invName'])){echo "value='$prodInfo[invName]'"; }?>><br>
                     
                         <label>Description</label><br>
