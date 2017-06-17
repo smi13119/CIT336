@@ -56,6 +56,21 @@
      $stmt->closeCursor();
      return $clientData;
  }
+ 
+ function getClientByEmailAndPassword($email,$password){
+     $db = acmeConnect();
+     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $sql = "SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail = :email AND clientPassword = :password";
+     $stmt = $db->prepare($sql);
+     $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+     $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+     $stmt->execute();
+     $clientData = $stmt->fetch(PDO::FETCH_ASSOC);     
+     $stmt->closeCursor();
+    
+     return $clientData;
+ }
+ 
  function updateData($updateId) {
      $db = acmeConnect();
      $sql = 'SELECT * FROM clients WHERE clientId = :updateId';
@@ -69,7 +84,7 @@
  
  function updateAccount($updateId, $upfirstName, $uplastName, $upemail){
      $db = acmeConnect();
-      $sql = 'UPDATE inventory SET firstname = :upfirstName, lastname = :uplastName, email = :upemail, WHERE clientId = :updateId';
+      $sql = 'UPDATE clients SET clientFirstname = :upfirstName, clientLastname = :uplastName, clientEmail = :upemail WHERE clientId = :updateId';
    $stmt = $db->prepare($sql);
    $stmt->bindValue(':updateId', $updateId, PDO::PARAM_INT);
    $stmt->bindValue(':upfirstName', $upfirstName, PDO::PARAM_STR);
@@ -79,8 +94,19 @@
    $rowsChanged = $stmt->rowCount();
    $stmt->closeCursor();
    return $rowsChanged;
+  
  }
 
-     
-         
+   
+   function updatePassword($updatePassword, $updateId) {
+       $db = acmeConnect();
+       $sql = 'Update clients Set clientPassword = :uppassword WHERE clientId= :updateId';
+       $stmt = $db->prepare($sql);
+   $stmt->bindValue(':updateId', $updateId, PDO::PARAM_INT);
+   $stmt->bindValue(':uppassword', $updatePassword, PDO::PARAM_STR);
+   $stmt->execute();
+   $rowsChanged = $stmt->rowCount();
+   $stmt->closeCursor();
+   return $rowsChanged;
+   }     
  

@@ -96,12 +96,28 @@ $email = filter_input(INPUT_POST, 'email');
 $password = filter_input (INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 $email = checkEmail($email);
 $checkPassword = checkPassword($password);
+
 //check for missing data
 if(empty($email) || empty($checkPassword)){
 $message = '<p> Please provide information for all empty form fields.</p>';
-include '../view/login.php';
-exit;       
+include '../view/login.php'; 
+exit;
 }
+$clientData = getClient($email);
+
+if($clientData["clientId"] > 0)
+ 
+{
+    $_SESSION['loggedin'] = TRUE;
+//remove the password from the array_pop fuction removes the last element form an array
+array_pop($clientData);
+////Store the array into the session
+$_SESSION['clientData'] = $clientData;
+//Send them to the admin view
+include '../view/admin.php';
+}
+break;
+
     case 'updateAccount':
         $updateId = filter_input(INPUT_POST, 'updateId', FILTER_SANITIZE_NUMBER_INT);
         $upfirstName = filter_input(INPUT_POST, 'upfirstName', FILTER_SANITIZE_STRING);
@@ -111,19 +127,44 @@ exit;
 if (empty($updateId) || empty($upfirstName) || empty ($uplastName) || empty ($upemail)){
     $message='<p>Please complete all the information</p>';
         }
-         $updata = updateData($updateId, $upfirstName, $uplastName, $upemail);
-          
+         $updata = updateAccount($updateId, $upfirstName, $uplastName, $upemail);
+      
           if ($updata) {
               $message = "<p>Congratulations, $upfirstName was sucessfully updated.</p>";
               $_SESSION['message'] = $message;
-              header('location: /acme/accounts/');
+              header('location: /acme/accounts/index.php?action=client-update');
               exit;
           } else {
               $message = "<p>Error. $upfirstName was not updated.</p>";
+              $_SESSION['message'] = $message;
               include '../view/client-update.php';
               exit;
           }
     break;
+    
+    case 'updatePassword':
+        $updateId = filter_input(INPUT_POST, 'updateId', FILTER_SANITIZE_NUMBER_INT);
+        $uppassword = filter_input(INPUT_POST, 'uppassword', FILTER_SANITIZE_STRING);
+        $uppassword = password_hash($uppassword, PASSWORD_DEFAULT);
+        if (empty($updateId) || empty($uppassword)){
+    $message='<p>Please complete all the information</p>';
+        }
+        $updata = updatePassword($updateId, $uppassword);
+      
+          if ($updata) {
+              $message = "<p>Congratulations your password was sucessfully updated.</p>";
+              $_SESSION['message'] = $message;
+              header('location: /acme/accounts/index.php?action=client-update');
+              exit;
+          } else {
+              $message = "<p>Error. Your password was not updated.</p>";
+              $_SESSION['message'] = $message;
+              include '../view/client-update.php';
+              exit;
+          }
+        
+   
+        break;
 
        
         
@@ -143,13 +184,7 @@ if (!$hashCheck) {
     exit;
 }
 //a valid user exists, log them in
-$_SESSION['loggedin'] = TRUE;
-//remove the password from the array_pop fuction removes the last element form an array
-array_pop($clientData);
-////Store the array into the session
-$_SESSION['clientData'] = $clientData;
-//Send them to the admin view
-include '../view/admin.php';
+
 exit;
 break;
 

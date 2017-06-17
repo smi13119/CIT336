@@ -3,7 +3,9 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
  header('location: /index.php');
  exit;
 }
+$clientData=$_SESSION['clientData'];
 ?>
+
 <!DOCTYPE html>
 <!--
 template 
@@ -50,20 +52,21 @@ template
                 $lastname = $_SESSION['clientData']['clientLastname'];
                 $email = $_SESSION['clientData']['clientEmail'];
                 $level = $_SESSION['clientData']['clientLevel'];
-                
+               
                  echo "<h1>$firstname $lastname</h1>
-                     
-                 <ul>
-                         <li>First name: $firstname</li>  
+                    
+                <ul>
+                        <li>First name: $firstname</li>  
                          <li>Last name: $lastname</li>
                          <li>Emai: $email</li>
                          
-                 </ul>";
-                 ?>
-                 </div>
+                </ul>";
+                ?>
+                </div>
              <?php
-                if (isset($message)){
-                    echo $message;
+                if  (isset($_SESSION['message'])){
+                    echo $_SESSION['message'];
+                    unset ($_SESSION['message']);
                 }
                 ?>
             <form method="post" name='accountupdate' action="/acme/accounts/index.php?action=updateAccount">
@@ -81,7 +84,7 @@ template
                     <label>Email Address<label><br>
                             <input type="text" name="upemail" id="upemail" required<?php if (isset($upemail)){echo "value='$upemail'";} ?>><br>
                             
-                    <input type="hidden" name="updateId" value="<?php if(isset($clientinfo['clientId'])){ echo $clientinfo['clientId'];} elseif(isset($clientId)){ echo $updateId; } ?>">
+                    <input type="hidden" name="updateId" value="<?php if(isset($clientData['clientId'])){ echo $clientData['clientId'];} elseif(isset($clientId)){ echo $clientId; } ?>">
                     <button type="submit" name="submit"> Update Data</button>
                     </fieldset>
             </form>
@@ -90,9 +93,12 @@ template
                     <fieldset>
                         <h1>Modify your Password:</h1>
                         <label>Password</lable><br>
-                        <input type="text" name="uppassword" id="uppassword" required
-                   
-                         <button type="submit" name="submit"> Update Data</button>      
+                        <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+                        <input type="text" name="uppassword" id="uppassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.[a-z]).*$"><br><br>
+                   <input type="hidden" name="updateId" value="<?php if(isset($clientData['clientId'])){ echo $clientData['clientId'];} elseif(isset($clientId)){ echo $clientId; } ?>">
+                         <button type="submit" name="submit"> Update Data</button> 
+                    </fieldset>
+                </form>
             </div>
         </main>
             <footer id="page-footer">

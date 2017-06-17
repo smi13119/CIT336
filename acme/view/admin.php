@@ -48,7 +48,7 @@ Admin View
                  <ul>
                          <li>First name: $firstname</li>
                          <li>Last name: $lastname</li>
-                         <li>Emai: $email</li>
+                         <li>Email: $email</li>
                          
                  </ul>";
                  echo '<a href="/acme/accounts/index.php?action=client-update">Update Account Information</a><br>';
