@@ -100,7 +100,7 @@
    
    function updatePassword($updatePassword, $updateId) {
        $db = acmeConnect();
-       $sql = 'Update clients Set clientPassword = :uppassword WHERE clientId= :updateId';
+       $sql = 'UPDATE clients Set clientPassword = :uppassword WHERE clientId= :updateId';
        $stmt = $db->prepare($sql);
    $stmt->bindValue(':updateId', $updateId, PDO::PARAM_INT);
    $stmt->bindValue(':uppassword', $updatePassword, PDO::PARAM_STR);

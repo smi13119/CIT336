@@ -5,7 +5,6 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
 }
 $clientData=$_SESSION['clientData'];
 ?>
-
 <!DOCTYPE html>
 <!--
 template 
@@ -94,9 +93,12 @@ template
                 <form method ="post" action="/acme/accounts/index.php?action=updatePassword">
                     <fieldset>
                         <h1>Modify your Password:</h1>
-                        <label>Password</label><br>
+                        <label for 'uppassword'>Password</label><br>
+                        
                         <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
-                        <input type="text" name="uppassword" id="uppassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.[a-z]).*$"><br><br>
+                        
+                        <input type="password" name="uppassword" id="uppassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.[a-z]).*$"><br><br>
+                        <input type='hidden' name='action' value='updatePassword'
                    <input type="hidden" name="updateId" value="<?php if(isset($clientData['clientId'])){ echo $clientData['clientId'];} elseif(isset($clientId)){ echo $clientId; } ?>">
                          <button type="submit" name="submit"> Update Data</button> 
                     </fieldset>
