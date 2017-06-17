@@ -19,7 +19,7 @@ template
         <link href="/acme/css/stylesheet.css" type="text/css" rel="stylesheet"/>
         
         <meta name="viewport" content="width=device-width, initial-scael 1.0">
-        <title></title>
+        <title> Account Update</title>
     </head>
     <body>
         <div id="page-container">
@@ -81,10 +81,12 @@ template
                     <input type="text" name="uplastName" id="uplastName" required<?php if (isset($uplastname)){echo "value='$uplastname'";} ?>><br>
                     
                     
-                    <label>Email Address<label><br>
+                    <label>Email Address</label>
+                            <br>
                             <input type="text" name="upemail" id="upemail" required<?php if (isset($upemail)){echo "value='$upemail'";} ?>><br>
                             
                     <input type="hidden" name="updateId" value="<?php if(isset($clientData['clientId'])){ echo $clientData['clientId'];} elseif(isset($clientId)){ echo $clientId; } ?>">
+                    <br>
                     <button type="submit" name="submit"> Update Data</button>
                     </fieldset>
             </form>
@@ -92,8 +94,8 @@ template
                 <form method ="post" action="/acme/accounts/index.php?action=updatePassword">
                     <fieldset>
                         <h1>Modify your Password:</h1>
-                        <label>Password</lable><br>
-                        <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+                        <label>Password</label><br>
+                        <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
                         <input type="text" name="uppassword" id="uppassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.[a-z]).*$"><br><br>
                    <input type="hidden" name="updateId" value="<?php if(isset($clientData['clientId'])){ echo $clientData['clientId'];} elseif(isset($clientId)){ echo $clientId; } ?>">
                          <button type="submit" name="submit"> Update Data</button> 
