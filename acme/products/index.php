@@ -1,36 +1,26 @@
 <?php
-
 /* 
 Products Controller
  * 
  */
 // Create or access a Session
 session_start();
-
 // Get the database connection file
 require_once '../library/connections.php';
-
 // Get the products model
 require_once '../model/products-model.php';
 //Get the Functions
 require_once '../library/functions.php';
 //Get the Acme-model
 require_once '../model/acme-model.php';
-
-
 //call the Navigation function
  navigation();
-
 // Get the array of categories
 $categoriesAndIds = getCategoriesAndIds();
-
 ob_start();
 include '../view/navlist.php';
 $navList = ob_get_contents();
 ob_end_clean();
-
-
-
 //Create a $catList variable to build a dynamic drop-down select list
 // Build a catlist   array
 //$catList = '<select name="categories">';
@@ -40,9 +30,6 @@ ob_end_clean();
 //$catList .= '<option value="'.$catAndId["categoryId"].'">'.$catAndId["categoryName"].'</option>';
 //}
 //$catList .= '</select>';
-
-
-
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
  $action = filter_input(INPUT_GET, 'action');
@@ -50,9 +37,7 @@ if ($action == NULL) {
      $action = 'prod-mgmt';
  }
 }
-
 switch ($action) {
-
 case 'prod-mgmt':
     $products = getProductBasics();
  if(count($products) > 0){
@@ -72,9 +57,6 @@ case 'prod-mgmt':
 }
 include '../view/prod-mgmt.php';
           break;
-
-
-
     
       case 'createCategory':
       $message='';
@@ -104,7 +86,6 @@ include '../view/prod-mgmt.php';
       include '../view/navlist.php';
       $navList = ob_get_contents();
       ob_end_clean();
-
     } else {
         $message = "<p>Sorry but the new Category $categoryname has failed to be added. Please try again.</p>";
         
@@ -166,7 +147,6 @@ include '../view/prod-mgmt.php';
  include '../view/prod-update.php';
  exit;
 break;
-
           
 case 'updateProd':
    
@@ -186,7 +166,6 @@ case 'updateProd':
           
           if (empty($catType) || empty($prodName) || empty($prodDescription) || empty($prodImage) || empty($prodThumbnail) || empty($prodPrice) || empty($prodStock) || empty($prodSize)  || empty($prodWeight)  || empty($prodLocation) || empty ($prodVendor) || empty($prodStyle)){
               
-
         $message ='<p>Please complete all information of the item! Double check the category of the item.</p>';
               include '../view/prod-update.php';
               exit;
@@ -204,8 +183,6 @@ case 'updateProd':
               include '../view/prod-update.php';
               exit;
           }
-
-
     break;
     
     case 'del':
@@ -234,7 +211,18 @@ case 'updateProd':
          header('location:/acme/products/');
          exit;
         }
-      
+
+        case 'category';
+    $type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+ $products = getProductsByCategory($type);
+ if(!count($products)){
+  $message = "<p class='notice'>Sorry, no $type products could be found.</p>";
+ } else {
+  $prodDisplay = buildProductsDisplay($products);
+ }
+ include '../view/category.php';
+break;
+
       default;
       include'../view/prod-mgmt.php';
       exit;

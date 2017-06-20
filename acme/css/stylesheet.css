@@ -9,6 +9,8 @@ and open the template in the editor.
 */
 body {
     background-image: url("/acme/images/site/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 font-family: comic sans ms, cursive;
 }
 
@@ -29,6 +31,22 @@ footer {
     background-color: #FFFFFF;
 }
 
+#prod-display{
+ margin: 0;
+ padding: 0;
+ display: flex;
+ flex-direction: column;
+}
+#prod-display li{
+ margin-bottom: .5em;
+ border: 1px #ccc solid;
+ list-style-type: none;
+ flex: 1 1 auto;
+}
+#prod-display li img{
+ width: 100%;
+ height: 200px;
+}
 
 .header-left {
     width: 60%; 
@@ -189,3 +207,4 @@ li.active {
     margin:0;
     color:#000;
 }
+

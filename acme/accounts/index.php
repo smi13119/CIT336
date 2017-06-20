@@ -145,10 +145,12 @@ if (empty($updateId) || empty($upfirstName) || empty ($uplastName) || empty ($up
     case 'updatePassword':
         $updateId = filter_input(INPUT_POST, 'updateId', FILTER_SANITIZE_NUMBER_INT);
         $uppassword = filter_input(INPUT_POST, 'uppassword', FILTER_SANITIZE_STRING);
-        $uppassword = password_hash($uppassword, PASSWORD_DEFAULT);
-        if (empty($updateId) || empty($uppassword)){
+        
+        if (empty($clientId) || empty($clientPassword)){
     $message='<p>Please complete all the information</p>';
         }
+        $uppassword = password_hash($uppassword, PASSWORD_DEFAULT);
+        
         $updata = updatePassword($updateId, $uppassword);
       
           if ($updata) {
@@ -198,7 +200,7 @@ break;
     
     default:
       include'../view/login.php';
-    exit;
+    break;
     case 'Logout':
         session_destroy();
         header('location:/acme');
