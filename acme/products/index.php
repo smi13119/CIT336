@@ -138,6 +138,32 @@ include '../view/prod-mgmt.php';
     include '../view/addproduct.php';
     break;
     
+case 'category';
+    $type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+    $products = getProductsByCategory($type);
+    if(!count($products)){
+    $message = "<p class='notice'>Sorry, no $type products could be found.</p>";
+    } else {
+     $prodDisplay = buildProductsDisplay($products);
+ }
+    include '../view/category.php';
+    break;
+
+case 'details':
+        $prodId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+        $product = getProductInfo($prodId);
+        
+        if(!count($product)){
+        $message = "<p class='notice'>Sorry, no $prodId  could be found.</p>";
+        } else {
+        $prodDetail = buildProductsDetail($product);
+        }
+        include '../view/product-detail.php';
+        break;
+    
+    
+    
+    
      case 'mod':
         $prodId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
     $prodInfo = getProductInfo($prodId);
@@ -212,16 +238,8 @@ case 'updateProd':
          exit;
         }
 
-        case 'category';
-    $type = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
- $products = getProductsByCategory($type);
- if(!count($products)){
-  $message = "<p class='notice'>Sorry, no $type products could be found.</p>";
- } else {
-  $prodDisplay = buildProductsDisplay($products);
- }
- include '../view/category.php';
-break;
+     
+
 
       default;
       include'../view/prod-mgmt.php';

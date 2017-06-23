@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['clientData']['clientLevel'] < 2) {
+if (session_id()== '') {
  header('location: /index.php');
  exit;
 }
@@ -44,45 +44,31 @@ template
        
         <main id="page-main">
             
-            <div class="userdata">
-                
-                <?php
-                $firstname = $_SESSION['clientData']['clientFirstname'];
-                $lastname = $_SESSION['clientData']['clientLastname'];
-                $email = $_SESSION['clientData']['clientEmail'];
-                $level = $_SESSION['clientData']['clientLevel'];
-               
-                 echo "<h1>$firstname $lastname</h1>
-                    
-                <ul>
-                        <li>First name: $firstname</li>  
-                         <li>Last name: $lastname</li>
-                         <li>Email: $email</li>
-                         
-                </ul>";
-                ?>
-                </div>
+         
              <?php
                 if  (isset($_SESSION['message'])){
                     echo $_SESSION['message'];
                     unset ($_SESSION['message']);
                 }
-                ?>
+                ?> 
+            <h1>Modify your account information:</h1><br>
+            <p> Please use the filed below to make any changes to your account info. </p>
+                
             <form method="post" name='accountupdate' action="/acme/accounts/index.php?action=updateAccount">
                 <fieldset>
-                    <h1>Modify your account information:</h1>
+                   
                     
                     <label>First Name</label><br>
-                    <input type="text" name="upfirstName" id="upfirstName" required<?php if (isset($upfirstName)){echo "value='$upfirstName'";} ?>><br>
+                    <input type="text" name="upfirstName" id="upfirstName" required<?php if (isset($upfirstName)){echo "value='$upfirstName'";} elseif(isset($clientData['clientFirstname'])) {echo "value='$clientData[clientFirstname]'";}?>><br>
                     
                     
                     <label>Last Name</label><br>
-                    <input type="text" name="uplastName" id="uplastName" required<?php if (isset($uplastname)){echo "value='$uplastname'";} ?>><br>
+                    <input type="text" name="uplastName" id="uplastName" required<?php if (isset($uplastname)){echo "value='$uplastname'";} elseif(isset($clientData['clientLastname'])) {echo "value='$clientData[clientLastname]'"; } ?>><br>
                     
                     
                     <label>Email Address</label>
                             <br>
-                            <input type="text" name="upemail" id="upemail" required<?php if (isset($upemail)){echo "value='$upemail'";} ?>><br>
+                            <input type="text" name="upemail" id="upemail" required<?php if (isset($upemail)){echo "value='$upemail'";} elseif(isset($clientData['clientEmail'])) {echo "value='$clientData[clientEmail]'"; } ?>><br>
                             
                     <input type="hidden" name="updateId" value="<?php if(isset($clientData['clientId'])){ echo $clientData['clientId'];} elseif(isset($clientId)){ echo $clientId; } ?>">
                     <br>
@@ -97,10 +83,11 @@ template
                         
                         <span class="reduce">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
                         
-                        <input type="password" name="uppassword" id="uppassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.[a-z]).*$"><br><br>
-                        <input type='hidden' name='action' value='updatePassword'>
+                        <input type="password" name="uppassword" id="uppassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.[a-z]).*$"<?php if (isset($uppassword)){echo "value='$updatepassword'";}
+                    elseif(isset($clientData['clientPassword'])) {echo "value='$clientData[clientPassword]'"; }?>>><br><br>
+                        <input type="submit" name="submit" value="Update Paswrod">
                    <input type="hidden" name="updateId" value="<?php if(isset($clientData['clientId'])){ echo $clientData['clientId'];} elseif(isset($clientId)){ echo $clientId; } ?>">
-                         <button type="submit" name="submit"> Update Data</button> 
+                         
                     </fieldset>
                 </form>
             </div>

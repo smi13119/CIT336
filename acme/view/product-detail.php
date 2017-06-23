@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
-Category PHP
+Product Detail
 -->
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><?php echo $type; ?> Products | Acme, Inc.</title>
+        <title><?php echo $invName; ?> Products | Acme, Inc.</title>
         <meta name="author" content="Lisa Smith">
         
         <link href="/acme/css/stylesheet.css" type="text/css" rel="stylesheet"/>
@@ -35,9 +35,9 @@ Category PHP
        
         <main id="page-main">
             <div>
-                <h1><?php echo $type; ?> Products</h1>
-                <?php if (isset ($message)) {echo $message; } ?>
-                <?php if (isset ($prodDisplay)) {echo $prodDisplay;} ?>
+                <h1> Detailed Information</h1>
+                <?php if (isset($message)) { echo $message;}?>
+                <?php if (isset($prodDetail)) { echo $prodDetail;}?>
             </div>
         </main>
             <footer id="page-footer">
@@ -49,3 +49,4 @@ Category PHP
         </div>
     </body>
 </html>
+

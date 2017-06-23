@@ -71,7 +71,7 @@
      return $clientData;
  }
  
- function updateData($updateId) {
+ function getupdateData($updateId) {
      $db = acmeConnect();
      $sql = 'SELECT * FROM clients WHERE clientId = :updateId';
      $stmt = $db->prepare($sql);

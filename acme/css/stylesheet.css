@@ -31,12 +31,13 @@ footer {
     background-color: #FFFFFF;
 }
 
-#prod-display{
+#prod-display {
  margin: 0;
  padding: 0;
  display: flex;
  flex-direction: column;
 }
+
 #prod-display li{
  margin-bottom: .5em;
  border: 1px #ccc solid;
@@ -47,6 +48,30 @@ footer {
  width: 100%;
  height: 200px;
 }
+
+#prod-detail {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+ #prod-detail li{
+        margin-bottom: .5em;
+        border: 1px #ccc solid;
+        list-style-type: none;
+        flex: 1 1 auto;
+        float: right;
+        max-width: 50%;
+    }
+    #prod-detail li img{
+        width: auto;
+        height: 200px;
+    }
+    
+    #image-display {
+        display: flex;
+        list-style-type: none;
+    }
 
 .header-left {
     width: 60%; 

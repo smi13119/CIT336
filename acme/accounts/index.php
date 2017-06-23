@@ -156,12 +156,12 @@ if (empty($updateId) || empty($upfirstName) || empty ($uplastName) || empty ($up
           if ($updata) {
               $message = "<p>Congratulations your password was sucessfully updated.</p>";
               $_SESSION['message'] = $message;
-              header('location: /acme/accounts/index.php?action=client-update');
+              include '../view/admin.php';
               exit;
           } else {
               $message = "<p>Error. Your password was not updated.</p>";
               $_SESSION['message'] = $message;
-              include '../view/client-update.php';
+              include '../view/admin.php';
               exit;
           }
         
