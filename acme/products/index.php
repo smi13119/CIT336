@@ -13,6 +13,9 @@ require_once '../model/products-model.php';
 require_once '../library/functions.php';
 //Get the Acme-model
 require_once '../model/acme-model.php';
+//Get uploads-model
+require_once '../model/uploads-model.php';
+    
 //call the Navigation function
  navigation();
 // Get the array of categories

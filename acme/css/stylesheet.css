@@ -45,7 +45,6 @@ footer {
  flex: 1 1 auto;
 }
 #prod-display li img{
- width: 100%;
  height: 200px;
 }
 
@@ -69,7 +68,6 @@ footer {
     }
     
     #image-display {
-        display: flex;
         list-style-type: none;
     }
 

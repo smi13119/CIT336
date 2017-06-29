@@ -5,7 +5,7 @@ Product Detail
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><?php echo $invName; ?> Products | Acme, Inc.</title>
+        <title><?php echo $prodId; ?> Products | Acme, Inc.</title>
         <meta name="author" content="Lisa Smith">
         
         <link href="/acme/css/stylesheet.css" type="text/css" rel="stylesheet"/>
@@ -33,11 +33,13 @@ Product Detail
              </nav>   
             </div>
        
-        <main id="page-main">
+        <main>
             <div>
                 <h1> Detailed Information</h1>
+               
                 <?php if (isset($message)) { echo $message;}?>
                 <?php if (isset($prodDetail)) { echo $prodDetail;}?>
+                <?php if (isset($imageThumbnailDisplay)) { echo $imageThumbnailDisplay;}?>
             </div>
         </main>
             <footer id="page-footer">
