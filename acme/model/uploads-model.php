@@ -42,15 +42,14 @@ function getImages() {
 }
 
 // Get thumbnail Image Information from images table
-function getImageThumbnails($invId) {
+function getThumbnails($prodId) {
     $db = acmeConnect();
-     $sql = 'SELECT imgId, imgPath, imgName, imgDate, inventory.invId, invName FROM images JOIN inventory ON images.invId = inventory.invId WHERE inventory.invId = :invId AND imgName LIKE "%-tn"';
+   $sql = "SELECT * FROM images WHERE imgName LIKE '%tn.%' AND invId = $prodId";
  $stmt = $db->prepare($sql);
- $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
  $stmt->execute();
- $imageThumbnailArray = $stmt->fetchAll(PDO::FETCH_NAMED);
+ $imageArray = $stmt->fetchAll(PDO::FETCH_NAMED);
  $stmt->closeCursor();
- return $imageThumbnailArray;
+ return $imageArray;
 }
 
 // Delete image information from the images table

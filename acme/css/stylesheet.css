@@ -52,15 +52,15 @@ footer {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    
 }
  #prod-detail li{
         margin-bottom: .5em;
         border: 1px #ccc solid;
         list-style-type: none;
         flex: 1 1 auto;
-        float: right;
-        max-width: 50%;
+        
+       
     }
     #prod-detail li img{
         width: auto;

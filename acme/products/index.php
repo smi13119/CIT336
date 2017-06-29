@@ -156,10 +156,14 @@ case 'details':
         $prodId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
         $product = getProductInfo($prodId);
         
+        //call getThumbnails function
+        $prodThumbnails = getThumbnails($prodId);
+        
         if(!count($product)){
         $message = "<p class='notice'>Sorry, no $prodId  could be found.</p>";
         } else {
         $prodDetail = buildProductsDetail($product);
+        $thumbnails =buildProdThumbnails($prodThumbnails);
         }
         include '../view/product-detail.php';
         break;

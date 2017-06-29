@@ -39,7 +39,7 @@ Product Detail
                
                 <?php if (isset($message)) { echo $message;}?>
                 <?php if (isset($prodDetail)) { echo $prodDetail;}?>
-                <?php if (isset($imageThumbnailDisplay)) { echo $imageThumbnailDisplay;}?>
+                <?php if (isset($thumbnails)) { echo $thumbnails;}?>
             </div>
         </main>
             <footer id="page-footer">

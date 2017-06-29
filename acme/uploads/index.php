@@ -111,11 +111,6 @@ if (count($imageArray)) {
  $imageDisplay = '<p>Sorry, no images could be found.</p>';
 }
 
-$imageThumbnailArray = getImageThumbnails();
-
-if (count($imageThumbnailArray)) {
-    $imageThumbnailDisplay = buildThumbnailDisplay($imageThumbnailArray);
-}
 
 // Get inventory information from database
 $products = getProductBasics();

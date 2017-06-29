@@ -54,13 +54,11 @@ function buildProductsDisplay($products){
 }
 
 function buildProductsDetail($product) {
-  $pd= "<h1>$product[invName]</h1>";
-  
-  $pd .= "<img id= 'prod-detail li img' src='$product[invImage]' alt='Image of $product[invName] on Acme.com'>";
+    $pd= "<h1>$product[invName]</h1>";
+    $pd .= "<img src='$product[invImage]' alt='Image of $product[invName] on Acme.com'>";
     $pd .= "<div id='prod-detail'>";
     $pd .= '<ul>';
     $pd .= '<li>';
-    $pd .= "<hr>";
     $pd .= "$product[invDescription]<br>";
     $pd .= "Price: $product[invPrice]<br>";
     $pd .= "Size: $product[invSize]<br>";
@@ -101,17 +99,6 @@ function buildImageDisplay($imageArray) {
  return $id;
 }
 
-//Build Thumbnail display for image
-function buildThumbnailDisplay ($imageThumbnails) {
-    $itd  = '<ul id="image-display">';
-    foreach ($imageThumbnails as $imageThumbnail) {
-        $itd .='<li>';
-        $itd .="<img src='$imageThumbnail[imgPath]'>";
-        $itd .='</li>';
-    }
-    $itd .='</ul>';
-    return $itd;
-}
 
 // Build the products select list
 function buildProductsSelect($products) {
@@ -244,4 +231,18 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
   imagedestroy($old_image);
 }
 
+
+//Build Thumbnail display for image
+function buildProdThumbnails ($prodThumbnails) {
+    $pd  = '<ul id="prod-detail">';
+    $pd .="<hr>";
+    $pd .= "<h1>Additional Thumbnails</h1>";
+    foreach ($prodThumbnails as $thumbnail) {
+        $pd .='<li>';
+        $pd .="<img src='$thumbnail[imgPath]' alt= 'Thumbnail Image of $thumbnail[imgName] on Acme.com'><br>";
+        $pd .='</li>';
+    }
+    $pd .='</ul>';
+    return $pd;
+}
 
