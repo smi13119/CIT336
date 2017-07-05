@@ -43,8 +43,7 @@ function buildProductsDisplay($products){
  $pd = '<ul id="prod-display">';
  foreach ($products as $product) {
   $pd .= '<li>';
-  $pd .= "<a href='/acme/products/index.php?action=details&id=$product[invId]'><img src='$product[invThumbnail]' alt='Image of $product[invName] on Acme.com'>";
-  $pd .= '<h2></h2>';
+  $pd .= "<a href='/acme/products/index.php?action=details&id=$product[invId]'><img src='$product[invThumbnail]' alt='Image of $product[invName] on Acme.com'></a>";
   $pd .= "<h2>$product[invName]</h2>";
   $pd .= "<span>$$product[invPrice]</span>";
   $pd .= '</li>';
@@ -234,9 +233,7 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
 
 //Build Thumbnail display for image
 function buildProdThumbnails ($prodThumbnails) {
-    $pd  = '<ul id="prod-detail">';
-    $pd .="<hr>";
-    $pd .= "<h1>Additional Thumbnails</h1>";
+    $pd  = '<ul>';
     foreach ($prodThumbnails as $thumbnail) {
         $pd .='<li>';
         $pd .="<img src='$thumbnail[imgPath]' alt= 'Thumbnail Image of $thumbnail[imgName] on Acme.com'><br>";

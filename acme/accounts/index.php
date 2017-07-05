@@ -24,6 +24,10 @@ $categories = getCategories();
 if ($action == NULL){
  $action = filter_input(INPUT_GET, 'action');
 }
+//check if the firstname exists and get it's value
+if(isset($_COOKIE ['firstname'])){
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+}
 switch ($action){
     case 'login':
      $email = filter_input(INPUT_POST, 'email');
@@ -79,11 +83,13 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 $regOutcome = regVisitor($firstname, $lastname, $email, $password);
 // Check and report the result
 // Check and report the result
+
 if ($regOutcome === 1) {
   setcookie('firstname', $firstname, strtotime('+1 year'), '/');
   $message = "<p>Thanks for registering $firstname. Please use your email and password to login.</p>";
   include '../view/login.php';
   exit;
+  
 } else {
   $message = "<p>Sorry $firstname, but the registration failed. Please try again.</p>";
   include '../view/registration.php';
@@ -105,18 +111,32 @@ exit;
 }
 $clientData = getClient($email);
 
-if($clientData["clientId"] > 0)
+if($clientData["clientId"] == NULL) {
+    
+    include '../view/home.php';
+    break;}
+   
  
-{
+
+
     $_SESSION['loggedin'] = TRUE;
 //remove the password from the array_pop fuction removes the last element form an array
+setcookie('firstname', $cookieFirstname=$clientData['clientFirstname'], strtotime('+1 year'), '/');
 array_pop($clientData);
 ////Store the array into the session
 $_SESSION['clientData'] = $clientData;
+
+
+
+
+    case 'admin':
+        if(!isset($_SESSION['clientData']) or($_SESSION['clientData']['clientId'] == NULL)) {
+    
+    include '../view/home.php';
+    break;}
 //Send them to the admin view
 include '../view/admin.php';
-}
-break;
+        break;
 
     case 'updateAccount':
         $updateId = filter_input(INPUT_POST, 'updateId', FILTER_SANITIZE_NUMBER_INT);
@@ -203,6 +223,8 @@ break;
     break;
     case 'Logout':
         session_destroy();
+        // Delete it
+        setcookie('firstname', '', strtotime('-1 year'), '/');
         header('location:/acme');
         exit;
 }

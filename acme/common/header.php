@@ -13,7 +13,7 @@ Header
 
        
             <?php if(isset($cookieFirstname)){
-            echo "<span>Welcome $cookieFirstname</span>";
+            echo "<span><a href='/acme/accounts/index.php?action=admin'>Welcome $cookieFirstname </a></span>";
         }?> 
 <figure class="header-right">
         <img class="img50p" src='/acme/images/site/account.gif' alt='account'/>
