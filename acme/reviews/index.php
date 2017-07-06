@@ -21,13 +21,33 @@ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
  */
 $navList = navigation();
 
+//Get the array of categories
+$categories = getCategories();
+
 //check if the firstname exists and get it's value
 if(isset($_COOKIE ['firstname'])){
     $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
 }
 
 switch ($action) {
-case 'review':
-// Store the incoming Review
-    $reviewId = filter_input(INPUT_POST, 'clientId', FILTER_VALIDATE_INT)
-}
+    case 'newReview':
+       
+            
+        
+
+break;
+
+    case 'updateReview':
+        
+break;
+
+    case 'deleteReview':
+        $reviewId
+        
+break;
+        
+
+default;
+    include'.../view/view/admin.php';
+    exit;
+   }
