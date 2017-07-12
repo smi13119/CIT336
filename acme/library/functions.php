@@ -237,8 +237,6 @@ function buildProdThumbnails ($prodThumbnails) {
     foreach ($prodThumbnails as $thumbnail) {
         $pd .='<li>';
         $pd .="<img src='$thumbnail[imgPath]' alt= 'Thumbnail Image of $thumbnail[imgName] on Acme.com'><br>";
-        $pd .='<h1>Customer Reivews</h1>';
-        $pd .='<h2>Please Login to leave a review</h2>';
         $pd .='</li>';
     }
     $pd .='</ul>';

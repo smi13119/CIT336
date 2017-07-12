@@ -41,6 +41,42 @@ Product Detail
                 <?php if (isset($prodDetail)) { echo $prodDetail;}?>
                 <?php if (isset($thumbnails)) { echo $thumbnails;}?>
             </div>
+            
+            <h3>Customer Reviews</h3>
+            <?php if (isset($cookieFirstname)){?>
+      
+       
+            <div>
+                <form method="post" action="/acme/reviews/index.php?action=newReview">
+                
+                <p><strong>Review the <?php echo $product['invName'];?></strong></p>
+            <?php if(isset($_GET['confirm']) && $_GET['confirm']=="true"){?>
+                <p style="color:red; font-weight:bold">Thanks for the review, it is displayed below.</p>
+                <?php }?>
+                <p>Screen Name:</p>
+                <input type="hidden" name="invId" value="<?php echo $product['invId'];?>"/>
+                <input type="hidden" name="clientId" value="<?php echo $clientDate['clientId'];?>"/>
+                <input type ="text" name = "user" disabled="disabled" value="<?php echo $cookieFirstname;?>"/>
+                <p>Review?</p>
+                <textarea style="display:block;height:75px" name="reviewText"></textarea>
+                <button type="submit">Submit Review</button>
+                </form>
+            </div>
+            <?php }
+            else{ ?>
+            <a href="/acme/admin.php">Login in to submit a review</a>
+            <?php }?>
+            
+            <div>
+                <?php foreach($reviews as $review){?>
+                <div>
+                    <p><?php echo $review['clientFirstname'];?> Wrote on <?php echo $review['reviewDate'];?></p>
+                    <div>
+                        <?php echo $reveiw['reviewText'];?>
+                    </div>
+                </div>
+                <?php }?>
+            </div>
         </main>
             <footer id="page-footer">
                 <div>

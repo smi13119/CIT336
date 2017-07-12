@@ -36,18 +36,31 @@ switch ($action) {
         
 
 break;
-
+    case 'editReview':
+        $message=
+        
+        break;
+    
     case 'updateReview':
         
 break;
 
+    case 'confirmdeleteReview':
+        
+        break;
+    
     case 'deleteReview':
-        $reviewId
+        
         
 break;
         
 
 default;
-    include'.../view/view/admin.php';
+    if(!isset($_SESSION['clientData']) or($_SESSION['clientData']['clientId'] == NULL)){
+        header('Location:/acme/index.php');
+        die();
+    }
+    else {
+    include'../view/admin.php';}
     exit;
-   }
+}

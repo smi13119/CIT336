@@ -15,6 +15,7 @@ require_once '../library/functions.php';
 require_once '../model/acme-model.php';
 //Get uploads-model
 require_once '../model/uploads-model.php';
+require_once '../model/reviews-model.php';
     
 //call the Navigation function
  navigation();
@@ -160,6 +161,7 @@ case 'category';
 case 'details':
         $prodId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
         $product = getProductInfo($prodId);
+        $reviews= getReviewsbyInv($prodId);
         
         //call getThumbnails function
         $prodThumbnails = getThumbnails($prodId);
