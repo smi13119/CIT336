@@ -47,32 +47,35 @@ Product Detail
       
        
             <div>
-                <form method="post" action="/acme/reviews/index.php?action=newReview">
+                <form method="post" action="/acme/reviews/index.php?action=addnewReview">
                 
                 <p><strong>Review the <?php echo $product['invName'];?></strong></p>
             <?php if(isset($_GET['confirm']) && $_GET['confirm']=="true"){?>
-                <p style="color:red; font-weight:bold">Thanks for the review, it is displayed below.</p>
+                <p class="reviewmessage">Thanks for the review, it is displayed below.</p>
                 <?php }?>
                 <p>Screen Name:</p>
-                <input type="hidden" name="invId" value="<?php echo $product['invId'];?>"/>
-                <input type="hidden" name="clientId" value="<?php echo $clientDate['clientId'];?>"/>
+                
                 <input type ="text" name = "user" disabled="disabled" value="<?php echo $cookieFirstname;?>"/>
-                <p>Review?</p>
-                <textarea style="display:block;height:75px" name="reviewText"></textarea>
+                <p>Review</p>
+                <textarea class="reviewtext"  name="reviewText"></textarea>
+                <br>
+                <input type="hidden" name="action" value="addnewReview">
+                <input type="hidden" name="invId" value="<?php echo $product['invId'];?>"/>
+                <input type="hidden" name="clientId" value="<?php echo $_SESSION['clientData']['clientId'];?>"/>
                 <button type="submit">Submit Review</button>
                 </form>
             </div>
             <?php }
             else{ ?>
-            <a href="/acme/admin.php">Login in to submit a review</a>
+            <a href="/acme/accounts/index.php">Login in to submit a review</a>
             <?php }?>
             
             <div>
                 <?php foreach($reviews as $review){?>
                 <div>
-                    <p><?php echo $review['clientFirstname'];?> Wrote on <?php echo $review['reviewDate'];?></p>
+                    <p><?php echo $review['clientFirstname'];?> Wrote on <?php echo strftime("%d %B, %Y ", strtotime ($review ['reviewDate']));?></p>
                     <div>
-                        <?php echo $reveiw['reviewText'];?>
+                        <?php echo $review['reviewText'];?>
                     </div>
                 </div>
                 <?php }?>

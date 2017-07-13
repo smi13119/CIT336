@@ -231,3 +231,12 @@ li.active {
     color:#000;
 }
 
+.reviewtext {
+    display:block;
+    height:75px;
+}
+
+.reviewmessage {
+    color:red; 
+    font-weight:bold;
+}

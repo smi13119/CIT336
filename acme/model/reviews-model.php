@@ -42,9 +42,9 @@ function getReviewbyId ($reviewId){
 }
 function getReviewbyClient ($clientId){
     $db =acmeConnect();
-    $sql= 'SELECT productName, reviewDate, reviewId FROM reviews, product  WHERE products.invId=reviews.productId AND clietnID =:clientId ORDER by reviewDate DESC ';
+    $sql= 'SELECT invName, reviewDate, reviewId FROM reviews, inventory  WHERE inventory.invId=reviews.invId AND clientId =:clientId ORDER by reviewDate DESC ';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':clientID', $clientId, PDO::PARAM_INT);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
     $stmt->execute();
     $clientReview = $stmt->fetchAll(PDO::FETCH_NAMED);
     $stmt->closeCursor();

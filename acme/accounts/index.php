@@ -14,6 +14,7 @@ require_once '../model/accounts-model.php';
 require_once '../library/functions.php';
 //get products model
 require_once '../model/products-model.php';
+require_once '../model/reviews-model.php';
 
 //call the Navigation function
 navigation();

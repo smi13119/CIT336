@@ -63,6 +63,23 @@ Admin View
                          ?>
                 
             </div>
+            
+            <div>
+                <h1>Manage Your Product Reviews</h1>
+                <?php $reviews=getReviewbyClient ($_SESSION['clientData']['clientId'])?>
+                <?php foreach($reviews as $review){?>
+                <div>
+                    <p><?php echo $review['invName'];
+                echo " Reviewed on "; 
+                echo strftime("%d %B, %Y ", strtotime ($review ['reviewDate']));
+                      echo "<a href='/acme/reviews?action=editReview&id=$review[reviewId]' title='Click to Edit'>Edit</a> ";
+                      echo "<a href='/acme/reviews?action=confirmdeleteReview&id=$review[reviewId]' title='Click to Delete'>Delete</a>";
+                              
+                        ?></p>
+                   
+                </div>
+                <?php }?>
+            </div>
         </main>
             <footer id="page-footer">
                 <div>

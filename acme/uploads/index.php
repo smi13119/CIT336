@@ -11,6 +11,7 @@ require_once '../library/functions.php';
 require_once '../model/acme-model.php';
 require_once '../model/products-model.php';
 require_once '../model/uploads-model.php';
+require_once '../model/reviews-model.php';
 
 /*collect the action
  */
