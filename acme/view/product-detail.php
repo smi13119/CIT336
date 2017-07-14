@@ -57,7 +57,7 @@ Product Detail
                 
                 <input type ="text" name = "user" disabled="disabled" value="<?php echo $cookieFirstname;?>"/>
                 <p>Review</p>
-                <textarea class="reviewtext"  name="reviewText"></textarea>
+                <textarea class="reviewtext"  name="reviewText" required ></textarea>
                 <br>
                 <input type="hidden" name="action" value="addnewReview">
                 <input type="hidden" name="invId" value="<?php echo $product['invId'];?>"/>

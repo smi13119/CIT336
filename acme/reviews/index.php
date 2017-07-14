@@ -37,8 +37,10 @@ switch ($action) {
         $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
         
         if (empty($reviewText)) {
+            $product= getProductInfo($invId);
+           $reviews= getReviewsbyInv($invId);
             $message = '<p><b>ERROR: Please provide information for all empty fields.</b></p>';
-            include '../acme/view/product-detail.php';
+            include '../view/product-detail.php';
             exit;
         }
         
@@ -55,15 +57,33 @@ switch ($action) {
           
 break;
     case 'editReview':
-    
+        
+        $reviewId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $review = getReviewbyId($reviewId);
+        $product= getProductInfo($review ['invId']);
+        include'../view/review-update.php';
+        
         
         break;
     
     case 'updateReview':
-        $reviewId = filter_input(INPUT_PUT, 'id', FILTER_VALIDATE_INT);
+        $reviewId = filter_input(INPUT_POST, 'reviewId', FILTER_VALIDATE_INT);
+        $reviewText = filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING);
         $review = updateReview($reviewId, $reviewText);
+        if($review!=1) {
+            $message='<h1>Sorry but your update failed. Please try again.</h1>';
+             $review = getReviewbyId($reviewId);
+             $product= getProductInfo($review ['invId']);
+            include'../view/review-update.php';
+            
+          
+            break;
+           
+        }
+        $review = getReviewbyId($reviewId);
+        $product= getProductInfo($review ['invId']);
         $message = '<h1>Congrats! Your Review has been updated!</h1>';
-        include '../view/admin.php';
+        include '../view/review-update.php';
         
 break;
     case 'confirmdeleteReview':

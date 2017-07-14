@@ -32,13 +32,13 @@ function getReviewsbyInv ($invId){
 
 function getReviewbyId ($reviewId){
     $db = acmeConnect();
-    $sql = 'SELECT clientFirstname,clientLastname, reviewText, reviewDate FROM reviews,clients  WHERE reviews.clientId = clients.clientId AND reviewId= :reviewId ORDER BY reviewDate DESC';
+    $sql = 'SELECT clientFirstname,clientLastname, reviewText, reviewDate, invId FROM reviews,clients  WHERE reviews.clientId = clients.clientId AND reviewId= :reviewId ORDER BY reviewDate DESC';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
     $stmt->execute();
     $reviews = $stmt->fetchAll(PDO::FETCH_NAMED);
     $stmt->closeCursor();
-    return $reviews;  
+return $reviews [0];  
 }
 function getReviewbyClient ($clientId){
     $db =acmeConnect();
@@ -69,7 +69,7 @@ function deleteReview ($reviewId) {
     $db = acmeConnect();
     $sql = 'DELETE FROM reviews WHERE reviewID=:reviewID';
     $stmt= $db->prepare($sql);
-    $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
+    $stmt->bindValue(':reviewID', $reviewId, PDO::PARAM_INT);
     $stmt->execute();
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
